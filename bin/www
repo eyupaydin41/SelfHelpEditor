@@ -6,6 +6,7 @@
 
 var app = require('../app');
 var debug = require('debug')('editor:server');
+const db = require('../config/db');
 var http = require('http');
 
 /**

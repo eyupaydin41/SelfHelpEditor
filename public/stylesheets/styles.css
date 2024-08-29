@@ -186,3 +186,200 @@ body {
 .menu-toggle.rotated {
     transform: rotateY(180deg);
 }
+
+.modal-header {
+    background-color: #007bff;
+    color: white;
+    border-bottom: none;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.modal-header .btn-close {
+    color: white;
+}
+
+.modal-body {
+    padding: 20px;
+}
+
+#therapyForm .form-label {
+    font-weight: bold;
+    color: #333;
+}
+
+#therapyForm .form-control {
+    border-radius: 5px;
+    box-shadow: none;
+    border-color: #ddd;
+}
+
+#therapyForm .form-control:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+}
+
+#therapyForm .btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+#therapyForm .btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+}
+
+#sectionContainer h5 {
+    margin-top: 20px;
+    font-weight: bold;
+}
+
+.section {
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    background-color: #f8f9fa;
+}
+
+.step {
+    padding: 15px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.section .mb-3,
+.step .mb-3 {
+    margin-bottom: 10px;
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+    border-color: #6c757d;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-secondary:hover {
+    background-color: #5a6268;
+    border-color: #545b62;
+}
+
+/* Butonları içeren kapsayıcıya text-align: center ekle */
+#sectionContainer,
+.stepsContainer {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+}
+
+#sectionContainer button,
+.stepsContainer button {
+    margin-top: 10px;
+    width: auto;
+    /* Butonların genişliği otomatik ayarlandı */
+    display: block;
+    /* Butonları blok seviyesinde göster */
+    text-align: center;
+    /* Butonları ortala */
+}
+
+#sectionContainerWrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+#sectionContainer {
+    flex: 1;
+    overflow-y: auto;
+}
+
+#sectionContainerWrapper button {
+    margin-top: auto;
+}
+
+.stepsContainerWrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.stepsContainer {
+    flex: 1;
+    overflow-y: auto;
+}
+
+.add-step-btn {
+    margin-top: auto;
+}
+
+.modal-body {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+#sectionContainerWrapper {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    overflow-y: auto;
+}
+
+#sectionContainer {
+    flex: 1;
+}
+
+.add-step-btn {
+    margin-top: auto;
+    font-size: 1.1rem;
+    padding: 0.5rem 1rem;
+    border-radius: 0.3rem;
+    align-self: center;
+    display: block;
+}
+
+#therapyForm .btn-primary {
+    margin-top: 50px;
+    width: 100%;
+    font-size: 1.2rem;
+    padding: 0.75rem;
+    border-radius: 0.3rem;
+}
+
+.modal-content {
+    border-radius: 10px;
+    position: relative;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    max-height: 90vh; /* Modal yüksekliğini ekranın %70'i ile sınırla */
+    overflow-y: auto; /* Y-ekseni boyunca kaydırma çubuğu ekle */
+}
+
+/* Kaydırma çubuğunu özelleştirme */
+.modal-content::-webkit-scrollbar {
+    width: 8px; /* Kaydırma çubuğu genişliği */
+    padding-right: 50px;
+}
+
+.modal-content::-webkit-scrollbar-track {
+    background: #f1f1f1; /* Kaydırma çubuğu arkası */
+    border-radius: 10px; /* Arkada köşeleri yuvarlatma */
+}
+
+.modal-content::-webkit-scrollbar-thumb {
+    background-color: #888; /* Kaydırma çubuğu rengi */
+    border-radius: 10px; /* Kaydırma çubuğu köşeleri yuvarlatma */
+    border: 2px solid #f1f1f1; /* Kaydırma çubuğunun çevresine boşluk */
+}
+
+/* Kaydırma çubuğunun üzerine gelince rengi değişsin */
+.modal-content::-webkit-scrollbar-thumb:hover {
+    background-color: #555; /* Hover durumunda renk değişimi */
+}
+

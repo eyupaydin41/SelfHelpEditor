@@ -4,11 +4,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Content Management</title>
+    <title>Therapy Management</title>
     <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom CSS -->
     <link href="stylesheets/styles.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <style>
+        .delete-btn {
+            cursor: pointer;
+            color: red;
+            font-size: 1.2em;
+            border: none;
+            background: transparent;
+        }
+
+        .delete-btn:hover {
+            color: darkred;
+        }
+    </style>
 </head>
 
 <body>
@@ -29,15 +44,15 @@
     </div>
 
     <div class="content" id="content">
-        <div id="home-content" class="centered-content">
+        <div id="home-content" class="centered-content" style="display: flex;">
             <img src="images/self.png" alt="Self Image">
         </div>
-        <div id="iceriklerim-content">
+        <div id="iceriklerim-content" style="display: block;">
             <h1>İçeriklerim</h1>
             <p>This is the İçeriklerim page content.</p>
         </div>
-        <div id="icerik-ekle-content" class="card-container">
-            <div class="card1">
+        <div id="icerik-ekle-content" class="card-container" style="display: flex;">
+            <div class="card1" onclick="showTherapyForm()">
                 <img src="images/therapy.png" alt="Terapi Ekle">
                 <div class="label">Terapi Ekle</div>
             </div>
@@ -50,12 +65,54 @@
                 <div class="label">Egzersiz Ekle</div>
             </div>
         </div>
+
+        <!-- Therapy Form Modal -->
+        <div class="modal fade" id="therapyModal" tabindex="-1" aria-labelledby="therapyModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="therapyModalLabel">Yeni Terapi Ekle</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="therapyForm">
+                            <div class="mb-3">
+                                <label for="title" class="form-label">Başlık</label>
+                                <input type="text" class="form-control" id="title" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="description" class="form-label">Açıklama</label>
+                                <textarea class="form-control" id="description" rows="3" required></textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label for="imageUrl" class="form-label">Resim URL</label>
+                                <input type="text" class="form-control" id="imageUrl" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="cardImageUrl" class="form-label">Kart Resim URL</label>
+                                <input type="text" class="form-control" id="cardImageUrl" required>
+                            </div>
+
+                            <!-- Bölüm Ekleme -->
+                            <div id="sectionContainerWrapper">
+                                <div id="sectionContainer">
+                                    <h5>Bölümler</h5>
+                                    <!-- Sections will be added here -->
+                                </div>
+                                <button type="button" class="btn btn-secondary" onclick="addSection()">Bölüm
+                                    Ekle</button>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary">Ekle</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <!-- Bootstrap 5 JS and dependencies -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Bootstrap Icons -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
 
     <script>
         var originalStyles = {};
@@ -90,7 +147,7 @@
                 activeLink.classList.add('active');
             }
 
-            if (!sidebar.classList.contains('collapsed')) {
+            if (!document.querySelector('.sidebar').classList.contains('collapsed')) {
                 toggleSidebar();
             }
         }
@@ -99,14 +156,156 @@
             var sidebar = document.querySelector('.sidebar');
             var content = document.querySelector('.content');
             var menuToggle = document.querySelector('.menu-toggle');
-            
+
             sidebar.classList.toggle('collapsed');
             content.classList.toggle('sidebar-collapsed');
-
             menuToggle.classList.toggle('rotated');
         }
 
-        saveOriginalStyles();
+        function showTherapyForm() {
+            var therapyModal = new bootstrap.Modal(document.getElementById('therapyModal'));
+            therapyModal.show();
+        }
+
+        function resetForm() {
+            document.getElementById('therapyForm').reset();
+            document.getElementById('sectionContainer').innerHTML = '<h5>Bölümler</h5>';
+        }
+
+        // Bölüm ve Adım Eklemek için JavaScript
+        let sectionCount = 0;
+
+        function addSection() {
+            sectionCount++;
+            const sectionContainer = document.getElementById('sectionContainer');
+
+            const sectionDiv = document.createElement('div');
+            sectionDiv.classList.add('section');
+            sectionDiv.setAttribute('data-index', sectionCount); // Her bölüme benzersiz bir index ekleyelim
+            sectionDiv.innerHTML = `
+            <div class="mb-3">
+                <label for="sectionTitle${sectionCount}" class="form-label">Bölüm ${sectionCount} Başlığı</label>
+                <input type="text" class="form-control" id="sectionTitle${sectionCount}" required>
+                <button type="button" class="delete-btn" onclick="deleteSection(${sectionCount})">&times;</button>
+            </div>
+            <div class="stepsContainerWrapper">
+                <div class="stepsContainer">
+                <h6 style="font-weight: bold;">Adımlar</h6>
+                    <!-- Steps will be added here -->
+                </div>
+                <button type="button" class="btn btn-secondary add-step-btn" onclick="addStep(${sectionCount})">Adım Ekle</button>
+            </div>
+        `;
+
+            sectionContainer.appendChild(sectionDiv);
+        }
+
+        function addStep(sectionIndex) {
+            const sectionDiv = document.querySelector(`.section[data-index="${sectionIndex}"]`);
+            const stepsContainer = sectionDiv ? sectionDiv.querySelector('.stepsContainer') : null;
+
+            if (!stepsContainer) {
+                console.error('Adım eklenirken bir hata oluştu: stepsContainer bulunamadı.');
+                return;
+            }
+
+            const stepCount = stepsContainer.querySelectorAll('.step').length + 1;
+
+            const stepDiv = document.createElement('div');
+            stepDiv.classList.add('step');
+            stepDiv.innerHTML = `
+    <div class="mb-3">
+        <label for="stepTitle${sectionIndex}_${stepCount}" class="form-label">Adım ${stepCount} Başlığı</label>
+        <input type="text" class="form-control" id="stepTitle${sectionIndex}_${stepCount}" required>
+        <label for="stepContent${sectionIndex}_${stepCount}" class="form-label">Adım ${stepCount} İçeriği</label>
+        <textarea class="form-control" id="stepContent${sectionIndex}_${stepCount}" rows="3" required></textarea>
+        <button type="button" class="delete-btn" onclick="deleteStep(this)">&times;</button>
+    </div>
+    `;
+
+            stepsContainer.appendChild(stepDiv);
+        }
+
+        function deleteSection(sectionIndex) {
+            const sectionDiv = document.querySelector(`.section[data-index="${sectionIndex}"]`);
+            if (sectionDiv) {
+                sectionDiv.remove();
+            }
+        }
+
+        function deleteStep(button) {
+            const stepDiv = button.closest('.step');
+            if (stepDiv) {
+                stepDiv.remove();
+            }
+        }
+
+        document.getElementById('therapyForm').addEventListener('submit', async function (event) {
+            event.preventDefault(); // Formun varsayılan gönderim davranışını engelle
+
+            // Form verilerini topla
+            const title = document.getElementById('title').value;
+            const description = document.getElementById('description').value;
+            const imageUrl = document.getElementById('imageUrl').value;
+            const cardImageUrl = document.getElementById('cardImageUrl').value;
+
+            // Bölümler ve adımları al
+            const sections = [];
+            document.querySelectorAll('#sectionContainer .section').forEach(section => {
+                const sectionTitle = section.querySelector('input[id^="sectionTitle"]').value;
+                const steps = [];
+                section.querySelectorAll('.stepsContainer .step').forEach(step => {
+                    const stepTitle = step.querySelector('input[id^="stepTitle"]').value;
+                    const stepContent = step.querySelector('textarea[id^="stepContent"]').value; // Yeni eklenen content
+                    steps.push({ title: stepTitle, content: stepContent });
+                });
+                sections.push({ title: sectionTitle, steps });
+            });
+
+            // Verileri API'ye gönder
+            try {
+                const response = await fetch('/content/therapies', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        title,
+                        description,
+                        imageUrl,
+                        cardImageUrl,
+                        sections
+                    })
+                });
+
+                const result = await response.json();
+
+                if (response.ok) {
+                    alert('Terapi Eklendi');
+                    // Modalı kapat
+                    const therapyModal = bootstrap.Modal.getInstance(document.getElementById('therapyModal'));
+                    therapyModal.hide();
+                    // Formu sıfırla
+                    resetForm();
+                } else {
+                    alert(`Hata: ${result.message}`);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Bir hata oluştu!');
+            }
+        });
+
+        // Modal kapanınca formu sıfırlama
+        document.getElementById('therapyModal').addEventListener('hidden.bs.modal', function () {
+            resetForm();
+        });
+
+        // Sayfa ilk yüklendiğinde sidebar ve içeriği ayarlama
+        document.addEventListener('DOMContentLoaded', function () {
+            saveOriginalStyles();
+            showContent('home-content');
+        });
     </script>
 </body>
 

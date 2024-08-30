@@ -11,6 +11,11 @@ const sectionSchema = new Schema({
         ref: 'Therapy',
         required: true,
     },
+    creator: {
+        type: Schema.Types.ObjectId,
+        ref: 'User',
+        required: true,
+    },
     createdAt: {
         type: Date,
         default: Date.now,

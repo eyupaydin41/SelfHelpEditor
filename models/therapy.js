@@ -12,6 +12,11 @@ const therapySchema = new Schema({
     },
     imageUrl: String,
     cardImageUrl: String,
+    creator: {
+        type: Schema.Types.ObjectId,
+        ref: 'User',
+        required: true,
+    },
     createdAt: {
         type: Date,
         default: Date.now,

@@ -103,7 +103,7 @@ body {
 }
 
 .content.sidebar-collapsed {
-    margin-left: 80px;
+    margin-left: 50px;
 }
 
 .centered-content {
@@ -124,16 +124,19 @@ body {
 
 .card-container {
     display: flex;
-    gap: 55px;
-    justify-content: center;
-    margin-top: 200px;
     flex-wrap: wrap;
+    justify-content: center;
+    gap: 60px; /* Kartlar arası boşluk */
+    width: 60%; /* Konteyner genişliğini belirliyoruz */
+    margin: 0 auto; /* Konteyneri ortalıyoruz */
+    margin-top: 80px;
 }
 
+
 .card1 {
-    flex: 1 1 300px;
-    max-width: 450px;
-    height: 350px;
+    flex-basis: calc(50% - 20px); /* Her kartın genişliğini belirliyoruz */
+    max-width: 400px;
+    height: 300px;
     position: relative;
     overflow: hidden;
     border-radius: 10px;
@@ -201,6 +204,8 @@ body {
 
 .modal-body {
     padding: 20px;
+    overflow-y: auto; /* Kaydırma ekleyin */
+    flex-grow: 1; /* Alanı doldurması için büyüt */
 }
 
 #therapyForm .form-label {
@@ -315,9 +320,6 @@ body {
     overflow-y: auto;
 }
 
-.add-step-btn {
-    margin-top: auto;
-}
 
 .modal-body {
     display: flex;
@@ -329,24 +331,15 @@ body {
     display: flex;
     flex-direction: column;
     flex: 1;
-    overflow-y: auto;
+    overflow-y: auto;   
 }
 
 #sectionContainer {
     flex: 1;
 }
 
-.add-step-btn {
-    margin-top: auto;
-    font-size: 1.1rem;
-    padding: 0.5rem 1rem;
-    border-radius: 0.3rem;
-    align-self: center;
-    display: block;
-}
-
 #therapyForm .btn-primary {
-    margin-top: 50px;
+    margin-top: 25px;
     width: 100%;
     font-size: 1.2rem;
     padding: 0.75rem;
@@ -357,29 +350,240 @@ body {
     border-radius: 10px;
     position: relative;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-    max-height: 90vh; /* Modal yüksekliğini ekranın %70'i ile sınırla */
-    overflow-y: auto; /* Y-ekseni boyunca kaydırma çubuğu ekle */
+    max-height: 90vh;
+    /* Modal yüksekliğini ekranın %70'i ile sınırla */
+    overflow-y: auto;
+    /* Y-ekseni boyunca kaydırma çubuğu ekle */
 }
 
 /* Kaydırma çubuğunu özelleştirme */
-.modal-content::-webkit-scrollbar {
-    width: 8px; /* Kaydırma çubuğu genişliği */
+.modal-body::-webkit-scrollbar {
+    width: 8px;
+    /* Kaydırma çubuğu genişliği */
     padding-right: 50px;
 }
 
-.modal-content::-webkit-scrollbar-track {
-    background: #f1f1f1; /* Kaydırma çubuğu arkası */
-    border-radius: 10px; /* Arkada köşeleri yuvarlatma */
+.modal-body::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    /* Kaydırma çubuğu arkası */
+    border-radius: 10px;
+    /* Arkada köşeleri yuvarlatma */
 }
 
-.modal-content::-webkit-scrollbar-thumb {
-    background-color: #888; /* Kaydırma çubuğu rengi */
-    border-radius: 10px; /* Kaydırma çubuğu köşeleri yuvarlatma */
-    border: 2px solid #f1f1f1; /* Kaydırma çubuğunun çevresine boşluk */
+.modal-body::-webkit-scrollbar-thumb {
+    background-color: #888;
+    /* Kaydırma çubuğu rengi */
+    border-radius: 10px;
+    /* Kaydırma çubuğu köşeleri yuvarlatma */
+    border: 2px solid #f1f1f1;
+    /* Kaydırma çubuğunun çevresine boşluk */
 }
 
 /* Kaydırma çubuğunun üzerine gelince rengi değişsin */
-.modal-content::-webkit-scrollbar-thumb:hover {
-    background-color: #555; /* Hover durumunda renk değişimi */
+.modal-body::-webkit-scrollbar-thumb:hover {
+    background-color: #555;
+    /* Hover durumunda renk değişimi */
 }
 
+.mb-3 {
+    position: relative;
+    /* Position relative to place the delete button */
+}
+
+.mb-3 .delete-btn {
+    position: absolute;
+    /* Position absolute to align inside the .mb-3 div */
+    top: 0;
+    /* Align button to the top */
+    right: 0;
+    /* Align button to the right */
+    /* Optional: Add some margin */
+    /* Optional: Padding for the button */
+    /* Background color for the delete button */
+    /* Text color for the button */
+    border: none;
+    /* Remove border */
+    border-radius: 5px;
+    /* Rounded corners */
+    cursor: pointer;
+    /* Pointer cursor for better UX */
+}
+
+/* PodcastModal için CSS */
+#podcastModal .modal-content {
+    max-height: 80vh; /* Modal yüksekliğini sınırlayarak kaydırma çubuğu eklenmesini sağlar */
+    overflow-y: auto; /* İçerik taşarsa kaydırma çubuğu ekler */
+}
+
+#podcastModal .modal-header {
+    background-color: #007bff; /* Üst kısım rengi */
+    border-bottom: 1px solid #dee2e6; /* Alt sınır */
+}
+
+#podcastModal .modal-body {
+    padding: 1.5rem; /* İçerik boşluğu */
+}
+
+#podcastModal .modal-footer {
+    background-color: #f8f9fa; /* Alt kısım rengi */
+    border-top: 1px solid #dee2e6; /* Üst sınır */
+}
+
+#podcastModal .form-label {
+    font-weight: bold;
+}
+
+#podcastModal .btn-primary {
+    margin-top: 25px;
+    width: 100%;
+    font-size: 1.2rem;
+    padding: 0.75rem;
+    border-radius: 0.3rem;
+    background-color: #007bff;
+    border-color: #007bff;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+#podcastModal .btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+}
+
+#exerciseModal .modal-content {
+    max-height: 80vh; /* Modal yüksekliğini sınırlayarak kaydırma çubuğu eklenmesini sağlar */
+    overflow-y: auto; /* İçerik taşarsa kaydırma çubuğu ekler */
+    border-radius: 10px; /* Modal köşelerini yuvarlatır */
+    position: relative;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Gölge ekler */
+}
+
+#exerciseModal .modal-content {
+    max-height: 80vh; /* Modal yüksekliğini sınırlayarak kaydırma çubuğu eklenmesini sağlar */
+    overflow-y: auto; /* İçerik taşarsa kaydırma çubuğu ekler */
+    border-radius: 10px; /* Modal köşelerini yuvarlatır */
+    position: relative;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Gölge ekler */
+}
+
+#exerciseModal .modal-header {
+    background-color: #007bff; /* Üst kısım rengi */
+    color: white;
+    border-bottom: 1px solid #dee2e6; /* Alt sınır */
+    border-top-left-radius: 10px; /* Sol üst köşeyi yuvarlatır */
+    border-top-right-radius: 10px; /* Sağ üst köşeyi yuvarlatır */
+}
+
+#exerciseModal .modal-body {
+    padding: 1.5rem; /* İçerik boşluğu */
+    flex-grow: 1; /* Alanı doldurması için büyüt */
+}
+
+#exerciseModal .modal-footer {
+    background-color: #f8f9fa; /* Alt kısım rengi */
+    border-top: 1px solid #dee2e6; /* Üst sınır */
+    padding: 1rem; /* Alt kısım boşluğu */
+    border-bottom-left-radius: 10px; /* Sol alt köşeyi yuvarlatır */
+    border-bottom-right-radius: 10px; /* Sağ alt köşeyi yuvarlatır */
+}
+
+#exerciseModal .form-label {
+    font-weight: bold; /* Etiket yazı tipi kalın */
+    color: #333; /* Etiket yazı rengi */
+}
+
+#exerciseModal .btn-primary {
+    margin-top: 25px;
+    width: 100%;
+    font-size: 1.2rem;
+    padding: 0.75rem;
+    border-radius: 0.3rem;
+    background-color: #007bff;
+    border-color: #007bff;
+    transition: background-color 0.3s ease;
+}
+
+#exerciseModal .btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+}
+
+#exerciseStepContainerWrapper {
+    margin-top: 20px;
+}
+
+#exerciseModal .btn-secondary {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto; /* This centers the button horizontally */
+}
+
+#exerciseModal .modal-content {
+    border-radius: 10px;
+    position: relative;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    max-height: 90vh;
+    /* Modal yüksekliğini ekranın %70'i ile sınırla */
+    overflow-y: auto;
+    /* Y-ekseni boyunca kaydırma çubuğu ekle */
+}
+
+#postModal .modal-content {
+    max-height: 80vh; /* Modal yüksekliğini sınırlayarak kaydırma çubuğu eklenmesini sağlar */
+    overflow-y: auto; /* İçerik taşarsa kaydırma çubuğu ekler */
+    border-radius: 10px; /* Modal köşelerini yuvarlatır */
+    position: relative;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Gölge ekler */
+}
+
+#postModal .modal-header {
+    background-color: #007bff; /* Üst kısım rengi */
+    color: white;
+    border-bottom: 1px solid #dee2e6; /* Alt sınır */
+    border-top-left-radius: 10px; /* Sol üst köşeyi yuvarlatır */
+    border-top-right-radius: 10px; /* Sağ üst köşeyi yuvarlatır */
+}
+
+#postModal .modal-body {
+    padding: 1.5rem; /* İçerik boşluğu */
+    flex-grow: 1; /* Alanı doldurması için büyüt */
+}
+
+#postModal .modal-footer {
+    background-color: #f8f9fa; /* Alt kısım rengi */
+    border-top: 1px solid #dee2e6; /* Üst sınır */
+    padding: 1rem; /* Alt kısım boşluğu */
+    border-bottom-left-radius: 10px; /* Sol alt köşeyi yuvarlatır */
+    border-bottom-right-radius: 10px; /* Sağ alt köşeyi yuvarlatır */
+}
+
+#postModal .form-label {
+    font-weight: bold; /* Etiket yazı tipi kalın */
+    color: #333; /* Etiket yazı rengi */
+}
+
+#postModal .btn-primary {
+    margin-top: 25px;
+    width: 100%;
+    font-size: 1.2rem;
+    padding: 0.75rem;
+    border-radius: 0.3rem;
+    background-color: #007bff;
+    border-color: #007bff;
+    transition: background-color 0.3s ease;
+}
+
+#postModal .btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+}
+
+#postModal .btn-secondary {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto; /* Bu, düğmeyi yatay olarak merkezler */
+}

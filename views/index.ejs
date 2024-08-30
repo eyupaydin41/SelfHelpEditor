@@ -36,7 +36,8 @@
     </div>
 
     <div class="sidebar" id="sidebar">
-        <a href="#home-content" onclick="showContent('home-content')"><i class="bi bi-house"></i><span>Home</span></a>
+        <a href="#home-content" onclick="showContent('home-content')"><i
+                class="bi bi-house"></i><span>Başlangıç</span></a>
         <a href="#iceriklerim-content" onclick="showContent('iceriklerim-content')"><i
                 class="bi bi-file-earmark"></i><span>İçeriklerim</span></a>
         <a href="#icerik-ekle-content" onclick="showContent('icerik-ekle-content')"><i
@@ -56,56 +57,176 @@
                 <img src="images/therapy.png" alt="Terapi Ekle">
                 <div class="label">Terapi Ekle</div>
             </div>
-            <div class="card1">
+            <div class="card1" onclick="showPodcastForm()">
                 <img src="images/podcast.png" alt="Podcast Ekle">
                 <div class="label">Podcast Ekle</div>
             </div>
-            <div class="card1">
+            <div class="card1" onclick="showExerciseForm()">
                 <img src="images/exercise.png" alt="Egzersiz Ekle">
                 <div class="label">Egzersiz Ekle</div>
             </div>
+            <div class="card1" onclick="showPostForm()">
+                <img src="images/post.png" alt="Yazı Ekle">
+                <div class="label">Yazı Ekle</div>
+            </div>
         </div>
+    </div>
 
-        <!-- Therapy Form Modal -->
-        <div class="modal fade" id="therapyModal" tabindex="-1" aria-labelledby="therapyModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="therapyModalLabel">Yeni Terapi Ekle</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <form id="therapyForm">
-                            <div class="mb-3">
-                                <label for="title" class="form-label">Başlık</label>
-                                <input type="text" class="form-control" id="title" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="description" class="form-label">Açıklama</label>
-                                <textarea class="form-control" id="description" rows="3" required></textarea>
-                            </div>
-                            <div class="mb-3">
-                                <label for="imageUrl" class="form-label">Resim URL</label>
-                                <input type="text" class="form-control" id="imageUrl" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="cardImageUrl" class="form-label">Kart Resim URL</label>
-                                <input type="text" class="form-control" id="cardImageUrl" required>
-                            </div>
+    <!-- Therapy Form Modal -->
+    <div class="modal fade" id="therapyModal" tabindex="-1" aria-labelledby="therapyModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="therapyModalLabel">Yeni Terapi Ekle</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="therapyForm">
+                        <div class="mb-3">
+                            <label for="title" class="form-label">Başlık</label>
+                            <input type="text" class="form-control" id="title" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="description" class="form-label">Açıklama</label>
+                            <textarea class="form-control" id="description" rows="3" required></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="imageUrl" class="form-label">Resim URL</label>
+                            <input type="text" class="form-control" id="imageUrl" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="cardImageUrl" class="form-label">Kart Resim URL</label>
+                            <input type="text" class="form-control" id="cardImageUrl" required>
+                        </div>
 
-                            <!-- Bölüm Ekleme -->
-                            <div id="sectionContainerWrapper">
-                                <div id="sectionContainer">
-                                    <h5>Bölümler</h5>
-                                    <!-- Sections will be added here -->
-                                </div>
-                                <button type="button" class="btn btn-secondary" onclick="addSection()">Bölüm
-                                    Ekle</button>
+                        <!-- Bölüm Ekleme -->
+                        <div id="sectionContainerWrapper">
+                            <div id="sectionContainer">
+                                <h5 style="text-align: center;">Bölümler</h5>
+                                <!-- Sections will be added here -->
                             </div>
+                            <button type="button" class="btn btn-secondary" onclick="addSection()">Bölüm
+                                Ekle</button>
+                        </div>
 
-                            <button type="submit" class="btn btn-primary">Ekle</button>
-                        </form>
-                    </div>
+                        <button type="submit" class="btn btn-primary">Ekle</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="podcastModal" tabindex="-1" aria-labelledby="podcastModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="podcastModalLabel">Yeni Podcast Ekle</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="podcastForm">
+                        <div class="mb-3">
+                            <label for="podcastTitle" class="form-label">Başlık</label>
+                            <input type="text" class="form-control" id="podcastTitle" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="podcastDescription" class="form-label">Açıklama</label>
+                            <textarea class="form-control" id="podcastDescription" rows="3" required></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="podcastImageUrl" class="form-label">Resim URL</label>
+                            <input type="text" class="form-control" id="podcastImageUrl" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="podcastCardImageUrl" class="form-label">Kart Resim URL</label>
+                            <input type="text" class="form-control" id="podcastCardImageUrl" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="podcastSource" class="form-label">Kaynak</label>
+                            <input type="text" class="form-control" id="podcastSource" required>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Ekle</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Exercise Form Modal -->
+    <div class="modal fade" id="exerciseModal" tabindex="-1" aria-labelledby="exerciseModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exerciseModalLabel">Yeni Egzersiz Ekle</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="exerciseForm">
+                        <div class="mb-3">
+                            <label for="exerciseName" class="form-label">Egzersiz Adı</label>
+                            <input type="text" class="form-control" id="exerciseName" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="exerciseDescription" class="form-label">Açıklama</label>
+                            <textarea class="form-control" id="exerciseDescription" rows="3" required></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="exerciseImageUrl" class="form-label">Resim URL</label>
+                            <input type="text" class="form-control" id="exerciseImageUrl" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="exerciseCardImageUrl" class="form-label">Kart Resim URL</label>
+                            <input type="text" class="form-control" id="exerciseCardImageUrl" required>
+                        </div>
+
+                        <div id="exerciseStepContainerWrapper">
+                            <div id="exerciseStepContainer">
+                                <h5 style="text-align: center; font-weight: bold;">Adımlar</h5>
+                            </div>
+                            <button type="button" class="btn btn-secondary" onclick="addExerciseStep()">Adım
+                                Ekle</button>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Ekle</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="postModal" tabindex="-1" aria-labelledby="postModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="postModalLabel">Yeni Yazı Ekle</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="postForm">
+                        <div class="mb-3">
+                            <label for="postTitle" class="form-label">Başlık</label>
+                            <input type="text" class="form-control" id="postTitle" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="postDescription" class="form-label">Açıklama</label>
+                            <textarea class="form-control" id="postDescription" rows="3" required></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="postImageUrl" class="form-label">Resim URL</label>
+                            <input type="text" class="form-control" id="postImageUrl" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="postCardImageUrl" class="form-label">Kart Resim URL</label>
+                            <input type="text" class="form-control" id="postCardImageUrl" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="postSource" class="form-label">Kaynak</label>
+                            <input type="text" class="form-control" id="postSource" required>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Ekle</button>
+                    </form>
                 </div>
             </div>
         </div>
@@ -136,7 +257,6 @@
                 selectedContent.style.display = originalStyles[contentId];
             }
 
-            // Aktif bağlantıyı işaretle
             var sidebarLinks = document.querySelectorAll('.sidebar a');
             sidebarLinks.forEach(function (link) {
                 link.classList.remove('active');
@@ -169,15 +289,15 @@
 
         function resetForm() {
             document.getElementById('therapyForm').reset();
-            document.getElementById('sectionContainer').innerHTML = '<h5>Bölümler</h5>';
+            document.getElementById('sectionContainer').innerHTML = '<h5 style="text-align: center;>Bölümler</h5>';
         }
 
         // Bölüm ve Adım Eklemek için JavaScript
         let sectionCount = 0;
 
         function addSection() {
-            sectionCount++;
             const sectionContainer = document.getElementById('sectionContainer');
+            const sectionCount = sectionContainer.querySelectorAll('.section').length + 1;
 
             const sectionDiv = document.createElement('div');
             sectionDiv.classList.add('section');
@@ -190,7 +310,7 @@
             </div>
             <div class="stepsContainerWrapper">
                 <div class="stepsContainer">
-                <h6 style="font-weight: bold;">Adımlar</h6>
+                <h6 style="font-weight: bold; text-align: center;">Adımlar</h6>
                     <!-- Steps will be added here -->
                 </div>
                 <button type="button" class="btn btn-secondary add-step-btn" onclick="addStep(${sectionCount})">Adım Ekle</button>
@@ -214,14 +334,14 @@
             const stepDiv = document.createElement('div');
             stepDiv.classList.add('step');
             stepDiv.innerHTML = `
-    <div class="mb-3">
-        <label for="stepTitle${sectionIndex}_${stepCount}" class="form-label">Adım ${stepCount} Başlığı</label>
-        <input type="text" class="form-control" id="stepTitle${sectionIndex}_${stepCount}" required>
-        <label for="stepContent${sectionIndex}_${stepCount}" class="form-label">Adım ${stepCount} İçeriği</label>
-        <textarea class="form-control" id="stepContent${sectionIndex}_${stepCount}" rows="3" required></textarea>
-        <button type="button" class="delete-btn" onclick="deleteStep(this)">&times;</button>
-    </div>
-    `;
+            <div class="mb-3">
+                <label for="stepTitle${sectionIndex}_${stepCount}" class="form-label">Adım ${stepCount} Başlığı</label>
+                <input type="text" class="form-control" id="stepTitle${sectionIndex}_${stepCount}" required>
+                <label for="stepContent${sectionIndex}_${stepCount}" class="form-label">Adım ${stepCount} İçeriği</label>
+                <textarea class="form-control" id="stepContent${sectionIndex}_${stepCount}" rows="3" required></textarea>
+                <button type="button" class="delete-btn" onclick="deleteStep(this)">&times;</button>
+            </div>
+            `;
 
             stepsContainer.appendChild(stepDiv);
         }
@@ -241,15 +361,13 @@
         }
 
         document.getElementById('therapyForm').addEventListener('submit', async function (event) {
-            event.preventDefault(); // Formun varsayılan gönderim davranışını engelle
+            event.preventDefault();
 
-            // Form verilerini topla
             const title = document.getElementById('title').value;
             const description = document.getElementById('description').value;
             const imageUrl = document.getElementById('imageUrl').value;
             const cardImageUrl = document.getElementById('cardImageUrl').value;
 
-            // Bölümler ve adımları al
             const sections = [];
             document.querySelectorAll('#sectionContainer .section').forEach(section => {
                 const sectionTitle = section.querySelector('input[id^="sectionTitle"]').value;
@@ -262,7 +380,6 @@
                 sections.push({ title: sectionTitle, steps });
             });
 
-            // Verileri API'ye gönder
             try {
                 const response = await fetch('/content/therapies', {
                     method: 'POST',
@@ -282,10 +399,8 @@
 
                 if (response.ok) {
                     alert('Terapi Eklendi');
-                    // Modalı kapat
                     const therapyModal = bootstrap.Modal.getInstance(document.getElementById('therapyModal'));
                     therapyModal.hide();
-                    // Formu sıfırla
                     resetForm();
                 } else {
                     alert(`Hata: ${result.message}`);
@@ -296,12 +411,196 @@
             }
         });
 
-        // Modal kapanınca formu sıfırlama
         document.getElementById('therapyModal').addEventListener('hidden.bs.modal', function () {
             resetForm();
         });
 
-        // Sayfa ilk yüklendiğinde sidebar ve içeriği ayarlama
+        document.getElementById('podcastModal').addEventListener('hidden.bs.modal', function () {
+            document.getElementById('podcastForm').reset(); // Podcast formunu sıfırla
+        });
+
+        function showPodcastForm() {
+            var podcastModal = new bootstrap.Modal(document.getElementById('podcastModal'));
+            podcastModal.show();
+        }
+
+        document.getElementById('podcastForm').addEventListener('submit', async function (event) {
+            event.preventDefault();
+
+            const title = document.getElementById('podcastTitle').value;
+            const description = document.getElementById('podcastDescription').value;
+            const imageUrl = document.getElementById('podcastImageUrl').value;
+            const cardImageUrl = document.getElementById('podcastCardImageUrl').value;
+            const source = document.getElementById('podcastSource').value;
+
+            try {
+                const response = await fetch('/content/podcasts', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        title,
+                        description,
+                        imageUrl,
+                        cardImageUrl,
+                        source
+                    })
+                });
+
+                const result = await response.json();
+
+                if (response.ok) {
+                    alert('Podcast Eklendi');
+                    const podcastModal = bootstrap.Modal.getInstance(document.getElementById('podcastModal'));
+                    podcastModal.hide();
+                    document.getElementById('podcastForm').reset();
+                } else {
+                    alert(`Hata: ${result.message}`);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Bir hata oluştu!');
+            }
+        });
+
+        function showExerciseForm() {
+            var exerciseModal = new bootstrap.Modal(document.getElementById('exerciseModal'));
+            exerciseModal.show();
+        }
+
+        function resetExerciseForm() {
+            document.getElementById('exerciseForm').reset();
+            document.getElementById('exerciseStepContainer').innerHTML = '<h5 style="text-align: center; font-weight: bold;">Adımlar</h5>';
+        }
+
+        let exerciseStepCount = 0;
+
+        function addExerciseStep() {
+            const exerciseStepContainer = document.getElementById('exerciseStepContainer');
+            const stepCount = exerciseStepContainer.querySelectorAll('.step').length + 1;
+
+            const stepDiv = document.createElement('div');
+            stepDiv.classList.add('step');
+            stepDiv.innerHTML = `
+        <div class="mb-3">
+            <label for="exerciseStepSource${stepCount}" class="form-label">Adım ${stepCount} Kaynağı</label>
+            <input type="text" class="form-control" id="exerciseStepSource${stepCount}" required>
+            <label for="exerciseStepDescription${stepCount}" class="form-label">Adım ${stepCount} Açıklaması</label>
+            <textarea class="form-control" id="exerciseStepDescription${stepCount}" rows="3" required></textarea>
+            <button type="button" class="delete-btn" onclick="deleteExerciseStep(this)">&times;</button>
+        </div>
+    `;
+
+            exerciseStepContainer.appendChild(stepDiv);
+        }
+
+        function deleteExerciseStep(button) {
+            const stepDiv = button.closest('.step');
+            if (stepDiv) {
+                stepDiv.remove();
+            }
+        }
+
+        document.getElementById('exerciseForm').addEventListener('submit', async function (event) {
+            event.preventDefault(); // Formun varsayılan gönderim davranışını engelle
+
+            const name = document.getElementById('exerciseName').value;
+            const description = document.getElementById('exerciseDescription').value;
+            const imageUrl = document.getElementById('exerciseImageUrl').value;
+            const cardImageUrl = document.getElementById('exerciseCardImageUrl').value;
+
+            const steps = [];
+            document.querySelectorAll('#exerciseStepContainer .step').forEach(step => {
+                const source = step.querySelector('input[id^="exerciseStepSource"]').value;
+                const stepDescription = step.querySelector('textarea[id^="exerciseStepDescription"]').value;
+                steps.push({ source, stepDescription });
+            });
+
+            try {
+                const response = await fetch('/content/exercises', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        name,
+                        description,
+                        imageUrl,
+                        cardImageUrl,
+                        steps
+                    })
+                });
+
+                const result = await response.json();
+
+                if (response.ok) {
+                    alert('Egzersiz Eklendi');
+                    const exerciseModal = bootstrap.Modal.getInstance(document.getElementById('exerciseModal'));
+                    exerciseModal.hide();
+                    resetExerciseForm();
+                } else {
+                    alert(`Hata: ${result.message}`);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Bir hata oluştu!');
+            }
+        });
+
+        document.getElementById('exerciseModal').addEventListener('hidden.bs.modal', function () {
+            resetExerciseForm();
+        });
+
+        function showPostForm() {
+            var postModal = new bootstrap.Modal(document.getElementById('postModal'));
+            postModal.show();
+        }
+
+        document.getElementById('postForm').addEventListener('submit', async function (event) {
+            event.preventDefault();
+
+            const title = document.getElementById('postTitle').value;
+            const description = document.getElementById('postDescription').value;
+            const imageUrl = document.getElementById('postImageUrl').value;
+            const cardImageUrl = document.getElementById('postCardImageUrl').value;
+            const source = document.getElementById('postSource').value;
+
+            try {
+                const response = await fetch('/content/posts', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        title,
+                        description,
+                        imageUrl,
+                        cardImageUrl,
+                        source
+                    })
+                });
+
+                const result = await response.json();
+
+                if (response.ok) {
+                    alert('Yazı Eklendi');
+                    const postModal = bootstrap.Modal.getInstance(document.getElementById('postModal'));
+                    postModal.hide();
+                    document.getElementById('postForm').reset();
+                } else {
+                    alert(`Hata: ${result.message}`);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Bir hata oluştu!');
+            }
+        });
+
+        document.getElementById('postModal').addEventListener('hidden.bs.modal', function () {
+            document.getElementById('postForm').reset();
+        });
+
         document.addEventListener('DOMContentLoaded', function () {
             saveOriginalStyles();
             showContent('home-content');

@@ -7,8 +7,9 @@ const Podcast = require('../models/podcast');
 const Exercise = require('../models/exercise');
 const ExerciseStep = require('../models/exerciseStep');
 const Post = require('../models/post');
+const authenticateToken = require('../middlewares/authenticateToken');
 
-router.post('/therapies', async (req, res) => {
+router.post('/therapies', authenticateToken, async (req, res) => {
     try {
         const { title, description, imageUrl, cardImageUrl, sections } = req.body;
 
@@ -16,7 +17,8 @@ router.post('/therapies', async (req, res) => {
             title,
             description,
             imageUrl,
-            cardImageUrl
+            cardImageUrl,
+            creator: req.user.userId
         });
 
         await therapy.save();
@@ -25,7 +27,8 @@ router.post('/therapies', async (req, res) => {
             for (let section of sections) {
                 const newSection = new Section({
                     title: section.title,
-                    therapy: therapy._id
+                    therapy: therapy._id,
+                    creator: req.user.userId
                 });
                 await newSection.save();
 
@@ -34,7 +37,8 @@ router.post('/therapies', async (req, res) => {
                         const newStep = new Step({
                             title: step.title,
                             content: step.content,
-                            section: newSection._id
+                            section: newSection._id,
+                            creator: req.user.userId
                         });
                         await newStep.save();
                     }
@@ -49,7 +53,7 @@ router.post('/therapies', async (req, res) => {
     }
 });
 
-router.post('/podcasts', async (req, res) => {
+router.post('/podcasts', authenticateToken, async (req, res) => {
     try {
         const { title, description, cardImageUrl, imageUrl, source } = req.body;
 
@@ -58,7 +62,8 @@ router.post('/podcasts', async (req, res) => {
             description,
             cardImageUrl,
             imageUrl,
-            source
+            source,
+            creator: req.user.userId
         });
 
         await podcast.save();
@@ -70,7 +75,7 @@ router.post('/podcasts', async (req, res) => {
     }
 });
 
-router.post('/exercises', async (req, res) => {
+router.post('/exercises', authenticateToken, async (req, res) => {
     try {
         const { name, description, imageUrl, cardImageUrl, steps } = req.body;
 
@@ -78,7 +83,8 @@ router.post('/exercises', async (req, res) => {
             name,
             description,
             imageUrl,
-            cardImageUrl
+            cardImageUrl,
+            creator: req.user.userId
         });
 
         await exercise.save();
@@ -88,7 +94,8 @@ router.post('/exercises', async (req, res) => {
                 const newExerciseStep = new ExerciseStep({
                     source: step.source,
                     stepDescription: step.stepDescription,
-                    exercise: exercise._id // Associate with the newly created exercise
+                    exercise: exercise._id,
+                    creator: req.user.userId
                 });
                 await newExerciseStep.save();
             }
@@ -101,7 +108,7 @@ router.post('/exercises', async (req, res) => {
     }
 });
 
-router.post('/posts', async (req, res) => {
+router.post('/posts', authenticateToken, async (req, res) => {
     try {
         const { title, description, imageUrl, cardImageUrl, source } = req.body;
 
@@ -110,7 +117,8 @@ router.post('/posts', async (req, res) => {
             description,
             imageUrl,
             cardImageUrl,
-            source
+            source,
+            creator: req.user.userId
         });
 
         await post.save();

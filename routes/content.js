@@ -9,6 +9,17 @@ const ExerciseStep = require('../models/exerciseStep');
 const Post = require('../models/post');
 const authenticateToken = require('../middlewares/authenticateToken');
 
+router.get('/my-therapies', authenticateToken, async (req, res) => {
+    try {
+        const therapies = await Therapy.find({ creator: req.user.userId });
+
+        res.status(200).json({ therapies });
+    } catch (error) {
+        console.error('Error fetching user therapies:', error);
+        res.status(500).json({ message: 'Bir hata oluştu!', error });
+    }
+});
+
 router.post('/therapies', authenticateToken, async (req, res) => {
     try {
         const { title, description, imageUrl, cardImageUrl, sections } = req.body;
@@ -53,6 +64,17 @@ router.post('/therapies', authenticateToken, async (req, res) => {
     }
 });
 
+router.get('/my-podcasts', authenticateToken, async (req, res) => {
+    try {
+        const podcasts = await Podcast.find({ creator: req.user.userId });
+
+        res.status(200).json({ podcasts });
+    } catch (error) {
+        console.error('Error fetching user podcasts:', error);
+        res.status(500).json({ message: 'Bir hata oluştu!', error });
+    }
+});
+
 router.post('/podcasts', authenticateToken, async (req, res) => {
     try {
         const { title, description, cardImageUrl, imageUrl, source } = req.body;
@@ -71,6 +93,17 @@ router.post('/podcasts', authenticateToken, async (req, res) => {
         res.status(201).json({ message: 'Podcast başarıyla eklendi!', podcast });
     } catch (error) {
         console.error('Error creating podcast:', error);
+        res.status(500).json({ message: 'Bir hata oluştu!', error });
+    }
+});
+
+router.get('/my-exercises', authenticateToken, async (req, res) => {
+    try {
+        const exercises = await Exercise.find({ creator: req.user.userId });
+
+        res.status(200).json({ exercises });
+    } catch (error) {
+        console.error('Error fetching user exercises:', error);
         res.status(500).json({ message: 'Bir hata oluştu!', error });
     }
 });
@@ -107,6 +140,18 @@ router.post('/exercises', authenticateToken, async (req, res) => {
         res.status(500).json({ message: 'Bir hata oluştu!', error });
     }
 });
+
+router.get('/my-posts', authenticateToken, async (req, res) => {
+    try {
+        const posts = await Post.find({ creator: req.user.userId });
+
+        res.status(200).json({ posts });
+    } catch (error) {
+        console.error('Error fetching user posts:', error);
+        res.status(500).json({ message: 'Bir hata oluştu!', error });
+    }
+});
+
 
 router.post('/posts', authenticateToken, async (req, res) => {
     try {

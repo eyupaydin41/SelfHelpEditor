@@ -25,7 +25,7 @@ router.post('/login', async (req, res) => {
 
         const token = jwt.sign({ userId: user._id }, process.env.JWT_TOKEN, { expiresIn: '1h' });
 
-        res.cookie('token', token, { httpOnly: true, secure: true, maxAge: 3600000 });
+        res.cookie('token', token, { secure: true, maxAge: 3600000 });
 
         res.status(200).json({ message: 'Giriş başarılı' });
     } catch (err) {

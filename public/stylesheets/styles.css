@@ -100,7 +100,31 @@ body {
     margin-left: 250px;
     padding: 80px 20px 20px 20px;
     transition: margin-left 0.3s ease;
+    overflow-y: auto; /* Dikey kaydırma çubuğunu etkinleştirir */
+    max-height: 100vh; /* İçeriğin yüksekliğine göre ayarlayın */
 }
+
+/* Kaydırma çubuğu stili */
+#content::-webkit-scrollbar {
+    width: 8px; /* Kaydırma çubuğu genişliği */
+  }
+  
+  /* Kaydırma çubuğu rayı */
+  #content::-webkit-scrollbar-track {
+    background: #f1f1f1; /* Arkaplan rengi */
+    border-radius: 10px; /* Köşeleri yuvarlatma */
+  }
+  
+  /* Kaydırma çubuğu tutacağı */
+  #content::-webkit-scrollbar-thumb {
+    background: #888; /* Tutacak rengi */
+    border-radius: 10px; /* Köşeleri yuvarlatma */
+  }
+  
+  /* Kaydırma çubuğu tutacağı üzerinde fareyle gezme efekti */
+  #content::-webkit-scrollbar-thumb:hover {
+    background: #555; /* Fareyle üzerine gelince tutacak rengi */
+  }
 
 .content.sidebar-collapsed {
     margin-left: 50px;
@@ -247,6 +271,7 @@ body {
     margin-bottom: 20px;
     border-radius: 5px;
     background-color: #f8f9fa;
+    margin-left: 20px;
 }
 
 .step {
@@ -587,3 +612,101 @@ body {
     justify-content: center;
     margin: 0 auto; /* Bu, düğmeyi yatay olarak merkezler */
 }
+
+/* İçeriklerim sayfası genel stil ayarları */
+#iceriklerim {
+    padding: 30px;
+    background-color: #f8f9fa; /* Daha açık bir arka plan rengi */
+    margin: 40px auto;
+    width: 90%;
+    max-width: 1200px; /* Maksimum genişlik */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); /* Daha belirgin gölge */
+    border-radius: 12px;
+}
+
+/* Başlık stil ayarları */
+#iceriklerim .header {
+    font-size: 32px;
+    font-weight: 600;
+    margin-bottom: 30px;
+    color: #333;
+    text-align: center;
+    text-transform: uppercase; /* Başlıkları büyük harfle */
+}
+
+/* İçerik kartları düzeni */
+.icerik-card-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+/* İçerik kartı stil ayarları */
+.icerik-card {
+    width: 100%; /* Tam genişlikte olsun */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 15px;
+    border: 1px solid #0ece9496; /* Daha açık bir kenarlık rengi */
+    border-radius: 12px;
+    overflow: hidden;
+    background-color: #0aeb944d; /* Arka plan rengini daha belirgin yap */
+    cursor: pointer;
+    position: relative; /* Konumlandırma için gerekli */
+    margin-bottom: 10px;
+}
+
+.icerik-card:hover {
+    background-color: #0ece9496;
+
+    .card-title {
+        font-size: 16px;
+        font-weight:bolder;
+        color: #038151; /* Yazı rengi */
+    }
+}
+
+
+/* İçerik kartı başlık stil ayarları */
+.icerik-card .card-title {
+    font-size: 16px;
+    font-weight: 500;
+    color: #038151; /* Yazı rengi */
+}
+
+.icerik-card .card-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.icerik-card .card-actions .btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+}
+
+.icerik-card .card-actions .btn:hover {
+    background-color: #0381512a;
+    transform: scale(1.25); /* Hover durumunda butonu büyütme */
+    
+}
+
+.icerik-card .card-actions .btn-primary::before {
+    content: url('https://img.icons8.com/material-outlined/24/000000/edit--v1.png');
+}
+
+.icerik-card .card-actions .btn-secondary::before {
+    content: url('https://img.icons8.com/material-outlined/24/000000/trash--v1.png');
+}
+
+.icerik-card .card-actions .btn-primary:hover::before {
+    content: url('https://img.icons8.com/material-outlined/24/FFFFFF/edit--v1.png');
+}
+
+.icerik-card .card-actions .btn-secondary:hover::before {
+    content: url('https://img.icons8.com/material-outlined/24/D44343/trash--v1.png');
+}
+

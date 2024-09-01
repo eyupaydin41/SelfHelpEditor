@@ -48,10 +48,74 @@
         <div id="home-content" class="centered-content" style="display: flex;">
             <img src="images/self.png" alt="Self Image">
         </div>
+
+        <!-- İçeriklerim Sayfası -->
         <div id="iceriklerim-content" style="display: block;">
-            <h1>İçeriklerim</h1>
-            <p>This is the İçeriklerim page content.</p>
+            <!-- Terapilerim -->
+            <div class="section">
+                <h2>Terapilerim</h2>
+                <div class="list-container">
+                    <!-- Terapiler Listesi -->
+                    <div class="icerik-card">
+                        <div class="card-title">Terapi 1</div>
+                        <div class="card-description">
+                            Terapi 1 hakkında kısa açıklama buraya yazılacaktır.
+                        </div>
+                        <a href="#" class="card-button">Detayları Gör</a>
+                    </div>
+                    <!-- Diğer terapi içerikleri buraya eklenecek -->
+                </div>
+            </div>
+
+            <!-- Podcastlerim -->
+            <div class="section">
+                <h2>Podcastlerim</h2>
+                <div class="list-container">
+                    <!-- Podcastler Listesi -->
+                    <div class="icerik-card">
+                        <div class="card-title">Podcast 1</div>
+                        <div class="card-description">
+                            Podcast 1 hakkında kısa açıklama buraya yazılacaktır.
+                        </div>
+                        <a href="#" class="card-button">Dinle</a>
+                    </div>
+                    <!-- Diğer podcast içerikleri buraya eklenecek -->
+                </div>
+            </div>
+
+            <!-- Egzersizlerim -->
+            <div class="section">
+                <h2>Egzersizlerim</h2>
+                <div class="list-container">
+                    <!-- Egzersizler Listesi -->
+                    <div class="icerik-card">
+                        <div class="card-title">Egzersiz 1</div>
+                        <div class="card-description">
+                            Egzersiz 1 hakkında kısa açıklama buraya yazılacaktır.
+                        </div>
+                        <a href="#" class="card-button">Başla</a>
+                    </div>
+                    <!-- Diğer egzersiz içerikleri buraya eklenecek -->
+                </div>
+            </div>
+
+            <!-- Yazılarım -->
+            <div class="section">
+                <h2>Yazılarım</h2>
+                <div class="list-container">
+                    <!-- Yazılar Listesi -->
+                    <div class="icerik-card">
+                        <div class="card-title">Yazı 1</div>
+                        <div class="card-description">
+                            Yazı 1 hakkında kısa açıklama buraya yazılacaktır.
+                        </div>
+                        <a href="#" class="card-button">Oku</a>
+                    </div>
+                    <!-- Diğer yazı içerikleri buraya eklenecek -->
+                </div>
+            </div>
         </div>
+
         <div id="icerik-ekle-content" class="card-container" style="display: flex;">
             <div class="card1" onclick="showTherapyForm()">
                 <img src="images/therapy.png" alt="Terapi Ekle">
@@ -246,11 +310,258 @@
             showContent('home-content');
         }
 
+        function getCookie(name) {
+            const value = `; ${document.cookie}`;
+            const parts = value.split(`; ${name}=`);
+            if (parts.length === 2) return parts.pop().split(';').shift();
+        }
+
+        async function fetchTherapies() {
+            try {
+                const token = getCookie('token');
+
+                const response = await fetch('/content/my-therapies', {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+
+                console.log(response);
+
+                if (response.ok) {
+                    const data = await response.json();
+                    return data.therapies;
+                } else {
+                    console.error('Error fetching therapies:', response.statusText);
+                }
+            } catch (error) {
+                console.error('Error fetching therapies:', error);
+            }
+        }
+
+        async function displayTherapies() {
+            const therapies = await fetchTherapies();
+            const therapyListContainer = document.querySelector('.section:nth-of-type(1) .list-container');
+
+            therapyListContainer.innerHTML = '';
+
+            therapies.forEach(therapy => {
+                const card = document.createElement('div');
+                card.className = 'icerik-card';
+
+                const cardTitle = document.createElement('div');
+                cardTitle.className = 'card-title';
+                cardTitle.textContent = therapy.title;
+
+                const cardActions = document.createElement('div');
+                cardActions.className = 'card-actions';
+
+                const editButton = document.createElement('button');
+                editButton.className = 'btn btn-primary';
+
+                const deleteButton = document.createElement('button');
+                deleteButton.className = 'btn btn-secondary';
+
+                cardActions.appendChild(editButton);
+                cardActions.appendChild(deleteButton);
+
+                card.appendChild(cardTitle);
+                card.appendChild(cardActions);
+
+                therapyListContainer.appendChild(card);
+            });
+        }
+
+        async function fetchPodcasts() {
+            try {
+                const token = getCookie('token');
+
+                const response = await fetch('/content/my-podcasts', {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+
+                console.log(response);
+
+                if (response.ok) {
+                    const data = await response.json();
+                    return data.podcasts;
+                } else {
+                    console.error('Error fetching podcasts:', response.statusText);
+                }
+            } catch (error) {
+                console.error('Error fetching podcasts:', error);
+            }
+        }
+
+        async function displayPodcasts() {
+            const podcasts = await fetchPodcasts();
+            const podcastListContainer = document.querySelector('.section:nth-of-type(2) .list-container');
+
+            podcastListContainer.innerHTML = '';
+
+            podcasts.forEach(podcast => {
+                const card = document.createElement('div');
+                card.className = 'icerik-card';
+
+                const cardTitle = document.createElement('div');
+                cardTitle.className = 'card-title';
+                cardTitle.textContent = podcast.title;
+
+                const cardActions = document.createElement('div');
+                cardActions.className = 'card-actions';
+
+                const editButton = document.createElement('button');
+                editButton.className = 'btn btn-primary';
+
+                const deleteButton = document.createElement('button');
+                deleteButton.className = 'btn btn-secondary';
+
+                cardActions.appendChild(editButton);
+                cardActions.appendChild(deleteButton);
+
+                card.appendChild(cardTitle);
+                card.appendChild(cardActions);
+
+                podcastListContainer.appendChild(card);
+            });
+        }
+
+
+        async function fetchExercises() {
+            try {
+                const token = getCookie('token');
+
+                const response = await fetch('/content/my-exercises', {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+
+                console.log(response);
+
+                if (response.ok) {
+                    const data = await response.json();
+                    return data.exercises;
+                } else {
+                    console.error('Error fetching exercises:', response.statusText);
+                }
+            } catch (error) {
+                console.error('Error fetching exercises:', error);
+            }
+        }
+
+        async function displayExercises() {
+            const exercises = await fetchExercises();
+            const exerciseListContainer = document.querySelector('.section:nth-of-type(3) .list-container');
+
+            exerciseListContainer.innerHTML = '';
+
+            exercises.forEach(exercise => {
+                const card = document.createElement('div');
+                card.className = 'icerik-card';
+
+                const cardTitle = document.createElement('div');
+                cardTitle.className = 'card-title';
+                cardTitle.textContent = exercise.name;
+
+                const cardActions = document.createElement('div');
+                cardActions.className = 'card-actions';
+
+                const editButton = document.createElement('button');
+                editButton.className = 'btn btn-primary';
+
+                const deleteButton = document.createElement('button');
+                deleteButton.className = 'btn btn-secondary';
+
+                cardActions.appendChild(editButton);
+                cardActions.appendChild(deleteButton);
+
+                card.appendChild(cardTitle);
+                card.appendChild(cardActions);
+
+                exerciseListContainer.appendChild(card);
+            });
+        }
+
+
+        async function fetchPosts() {
+            try {
+                const token = getCookie('token');
+
+                const response = await fetch('/content/my-posts', {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+
+                console.log(response);
+
+                if (response.ok) {
+                    const data = await response.json();
+                    return data.posts;
+                } else {
+                    console.error('Error fetching posts:', response.statusText);
+                }
+            } catch (error) {
+                console.error('Error fetching posts:', error);
+            }
+        }
+
+        async function displayPosts() {
+            const posts = await fetchPosts();
+            const postListContainer = document.querySelector('.section:nth-of-type(4) .list-container');
+
+            postListContainer.innerHTML = '';
+
+            posts.forEach(post => {
+                const card = document.createElement('div');
+                card.className = 'icerik-card';
+
+                const cardTitle = document.createElement('div');
+                cardTitle.className = 'card-title';
+                cardTitle.textContent = post.title;
+
+                const cardActions = document.createElement('div');
+                cardActions.className = 'card-actions';
+
+                const editButton = document.createElement('button');
+                editButton.className = 'btn btn-primary';
+
+                const deleteButton = document.createElement('button');
+                deleteButton.className = 'btn btn-secondary';
+
+                cardActions.appendChild(editButton);
+                cardActions.appendChild(deleteButton);
+
+                card.appendChild(cardTitle);
+                card.appendChild(cardActions);
+
+                postListContainer.appendChild(card);
+            });
+        }
+
         function showContent(contentId) {
             var contents = document.querySelectorAll('.content > div');
             contents.forEach(function (content) {
                 content.style.display = 'none';
             });
+
+            if (contentId === 'iceriklerim-content') {
+                displayTherapies();
+                displayExercises();
+                displayPodcasts();
+                displayPosts();
+            }
 
             var selectedContent = document.getElementById(contentId);
             if (selectedContent && originalStyles[contentId]) {

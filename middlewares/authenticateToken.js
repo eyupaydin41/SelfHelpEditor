@@ -7,9 +7,7 @@ const authenticateToken = (req, res, next) => {
 
     jwt.verify(token, process.env.JWT_TOKEN, (err, user) => {
         if (err) return res.redirect('/auth');
-
         req.user = user;
-        console.log(req.user.userId);
         next();
     });
 };

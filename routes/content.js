@@ -175,4 +175,206 @@ router.post('/posts', authenticateToken, async (req, res) => {
     }
 });
 
+router.get('/unapproved-contents', async (req, res) => {
+    try {
+        // Pending içeriklerin her model için ayrı ayrı sorgulanması
+        const unapprovedExercises = await Exercise.find({ status: 'pending' })
+            .populate('creator', 'username')
+            .select('_id name creator createdAt');
+
+        const unapprovedPodcasts = await Podcast.find({ status: 'pending' })
+            .populate('creator', 'username')
+            .select('_id title creator createdAt');
+
+        const unapprovedPosts = await Post.find({ status: 'pending' })
+            .populate('creator', 'username')
+            .select('_id title creator createdAt');
+
+        const unapprovedTherapies = await Therapy.find({ status: 'pending' })
+            .populate('creator', 'username')
+            .select('_id title creator createdAt');
+
+        // İçerikleri türlerine göre düzenleme
+        const unapprovedContents = [
+            ...unapprovedExercises.map(content => ({
+                _id: content._id,
+                type: 'Exercise',
+                title: content.name,
+                creator: content.creator.username,
+                createdAt: content.createdAt
+            })),
+            ...unapprovedPodcasts.map(content => ({
+                _id: content._id,
+                type: 'Podcast',
+                title: content.title,
+                creator: content.creator.username,
+                createdAt: content.createdAt
+            })),
+            ...unapprovedPosts.map(content => ({
+                _id: content._id,
+                type: 'Post',
+                title: content.title,
+                creator: content.creator.username,
+                createdAt: content.createdAt
+            })),
+            ...unapprovedTherapies.map(content => ({
+                _id: content._id,
+                type: 'Therapy',
+                title: content.title,
+                creator: content.creator.username,
+                createdAt: content.createdAt
+            })),
+        ];
+
+        // createdAt alanına göre sıralama
+        const sortedContents = unapprovedContents.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+
+        res.status(200).json(sortedContents);
+    } catch (error) {
+        console.error('Error fetching unapproved contents:', error);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+});
+
+
+// Güncelleme Endpointi
+router.put('/exercise/:id', async (req, res) => {
+    try {
+        const { id } = req.params;
+        const updatedExercise = await Exercise.findByIdAndUpdate(id, req.body, { new: true });
+
+        if (!updatedExercise) {
+            return res.status(404).json({ message: 'Exercise not found' });
+        }
+
+        res.status(200).json(updatedExercise);
+    } catch (error) {
+        console.error('Error updating exercise:', error);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+});
+
+// Silme Endpointi
+router.delete('/exercise/:id', async (req, res) => {
+    try {
+        const { id } = req.params;
+        const deletedExercise = await Exercise.findByIdAndDelete(id);
+
+        if (!deletedExercise) {
+            return res.status(404).json({ message: 'Exercise not found' });
+        }
+
+        res.status(200).json({ message: 'Exercise deleted successfully' });
+    } catch (error) {
+        console.error('Error deleting exercise:', error);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+});
+
+// Güncelleme Endpointi
+router.put('/podcast/:id', async (req, res) => {
+    try {
+        const { id } = req.params;
+        const updatedPodcast = await Podcast.findByIdAndUpdate(id, req.body, { new: true });
+
+        if (!updatedPodcast) {
+            return res.status(404).json({ message: 'Podcast not found' });
+        }
+
+        res.status(200).json(updatedPodcast);
+    } catch (error) {
+        console.error('Error updating podcast:', error);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+});
+
+// Silme Endpointi
+router.delete('/podcast/:id', async (req, res) => {
+    try {
+        const { id } = req.params;
+        const deletedPodcast = await Podcast.findByIdAndDelete(id);
+
+        if (!deletedPodcast) {
+            return res.status(404).json({ message: 'Podcast not found' });
+        }
+
+        res.status(200).json({ message: 'Podcast deleted successfully' });
+    } catch (error) {
+        console.error('Error deleting podcast:', error);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+});
+
+// Güncelleme Endpointi
+router.put('/post/:id', async (req, res) => {
+    try {
+        const { id } = req.params;
+        const updatedPost = await Post.findByIdAndUpdate(id, req.body, { new: true });
+
+        if (!updatedPost) {
+            return res.status(404).json({ message: 'Post not found' });
+        }
+
+        res.status(200).json(updatedPost);
+    } catch (error) {
+        console.error('Error updating post:', error);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+});
+
+// Silme Endpointi
+router.delete('/post/:id', async (req, res) => {
+    try {
+        const { id } = req.params;
+        const deletedPost = await Post.findByIdAndDelete(id);
+
+        if (!deletedPost) {
+            return res.status(404).json({ message: 'Post not found' });
+        }
+
+        res.status(200).json({ message: 'Post deleted successfully' });
+    } catch (error) {
+        console.error('Error deleting post:', error);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+});
+
+
+// Güncelleme Endpointi
+router.put('/therapy/:id', async (req, res) => {
+    try {
+        const { id } = req.params;
+        const updatedTherapy = await Therapy.findByIdAndUpdate(id, req.body, { new: true });
+
+        if (!updatedTherapy) {
+            return res.status(404).json({ message: 'Therapy not found' });
+        }
+
+        res.status(200).json(updatedTherapy);
+    } catch (error) {
+        console.error('Error updating therapy:', error);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+});
+
+// Silme Endpointi
+router.delete('/therapy/:id', async (req, res) => {
+    try {
+        const { id } = req.params;
+        const deletedTherapy = await Therapy.findByIdAndDelete(id);
+
+        if (!deletedTherapy) {
+            return res.status(404).json({ message: 'Therapy not found' });
+        }
+
+        res.status(200).json({ message: 'Therapy deleted successfully' });
+    } catch (error) {
+        console.error('Error deleting therapy:', error);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+});
+
+
+
+
 module.exports = router;

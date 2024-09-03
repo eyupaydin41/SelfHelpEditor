@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
+const { STATUS } = require('../config/Enum');
 
 const postSchema = new Schema({
     title: {
@@ -21,6 +22,11 @@ const postSchema = new Schema({
     source: {
         type: String,
         required: true
+    },
+    status: {
+        type: String,
+        enum: Object.values(STATUS),
+        default: STATUS.PENDING
     },
     creator: {
         type: Schema.Types.ObjectId,

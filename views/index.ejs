@@ -808,7 +808,6 @@
                                 });
                                 const result = await response.json();
                                 if (response.ok) {
-                                    alert(result.message);
                                     document.querySelector(`[data-id="${contentId}"]`).closest('.content-item').remove();
                                 } else {
                                     alert('Bir hata oluştu: ' + result.message);
@@ -839,8 +838,7 @@
                                 });
                                 const result = await response.json();
                                 if (response.ok) {
-                                    alert(result.message);
-                                    document.querySelector(`[data-id="${contentId}"]`).closest('.content-item').remove();
+                                     document.querySelector(`[data-id="${contentId}"]`).closest('.content-item').remove();
                                 } else {
                                     alert('Bir hata oluştu: ' + result.message);
                                 }

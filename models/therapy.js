@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
+const { STATUS } = require('../config/Enum');
 
 const therapySchema = new Schema({
     title: {
@@ -12,6 +13,11 @@ const therapySchema = new Schema({
     },
     imageUrl: String,
     cardImageUrl: String,
+    status: {
+        type: String,
+        enum: Object.values(STATUS),
+        default: STATUS.PENDING
+    },
     creator: {
         type: Schema.Types.ObjectId,
         ref: 'User',

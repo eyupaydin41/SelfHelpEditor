@@ -1,525 +1,623 @@
-<!DOCTYPE html>
-<html lang="en">
+    <!DOCTYPE html>
+    <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Therapy Management</title>
-    <!-- Bootstrap 5 CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Custom CSS -->
-    <link href="stylesheets/styles.css" rel="stylesheet">
-    <!-- Bootstrap Icons -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
-    <style>
-        .delete-btn {
-            cursor: pointer;
-            color: red;
-            font-size: 1.2em;
-            border: none;
-            background: transparent;
-        }
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Therapy Management</title>
+        <!-- Bootstrap 5 CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+        <!-- Custom CSS -->
+        <link href="stylesheets/styles.css" rel="stylesheet">
+        <!-- Bootstrap Icons -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+        <style>
+            .delete-btn {
+                cursor: pointer;
+                color: red;
+                font-size: 1.2em;
+                border: none;
+                background: transparent;
+            }
 
-        .delete-btn:hover {
-            color: darkred;
-        }
-    </style>
-</head>
+            .delete-btn:hover {
+                color: darkred;
+            }
+        </style>
+    </head>
 
-<body>
-    <div class="navbar">
-        <div class="menu-toggle" onclick="toggleSidebar()">&#9776;</div>
-        <div class="title">SelfHelp</div>
-        <div class="nav-list">
-            <a href="#">Admin</a>
-        </div>
-    </div>
-
-    <div class="sidebar" id="sidebar">
-        <a href="#home-content" onclick="showContent('home-content')"><i
-                class="bi bi-house"></i><span>Başlangıç</span></a>
-        <a href="#iceriklerim-content" onclick="showContent('iceriklerim-content')"><i
-                class="bi bi-file-earmark"></i><span>İçeriklerim</span></a>
-        <a href="#icerik-ekle-content" onclick="showContent('icerik-ekle-content')"><i
-                class="bi bi-plus-square"></i><span>Ekle</span></a>
-    </div>
-
-    <div class="content" id="content">
-        <div id="home-content" class="centered-content" style="display: flex;">
-            <img src="images/self.png" alt="Self Image">
-        </div>
-
-        <!-- İçeriklerim Sayfası -->
-        <div id="iceriklerim-content" style="display: block;">
-            <!-- Terapilerim -->
-            <div class="section">
-                <h2>Terapilerim</h2>
-                <div class="list-container">
-                    <!-- Terapiler Listesi -->
-                    <div class="icerik-card">
-                        <div class="card-title">Terapi 1</div>
-                        <div class="card-description">
-                            Terapi 1 hakkında kısa açıklama buraya yazılacaktır.
-                        </div>
-                        <a href="#" class="card-button">Detayları Gör</a>
-                    </div>
-                    <!-- Diğer terapi içerikleri buraya eklenecek -->
-                </div>
-            </div>
-
-            <!-- Podcastlerim -->
-            <div class="section">
-                <h2>Podcastlerim</h2>
-                <div class="list-container">
-                    <!-- Podcastler Listesi -->
-                    <div class="icerik-card">
-                        <div class="card-title">Podcast 1</div>
-                        <div class="card-description">
-                            Podcast 1 hakkında kısa açıklama buraya yazılacaktır.
-                        </div>
-                        <a href="#" class="card-button">Dinle</a>
-                    </div>
-                    <!-- Diğer podcast içerikleri buraya eklenecek -->
-                </div>
-            </div>
-
-            <!-- Egzersizlerim -->
-            <div class="section">
-                <h2>Egzersizlerim</h2>
-                <div class="list-container">
-                    <!-- Egzersizler Listesi -->
-                    <div class="icerik-card">
-                        <div class="card-title">Egzersiz 1</div>
-                        <div class="card-description">
-                            Egzersiz 1 hakkında kısa açıklama buraya yazılacaktır.
-                        </div>
-                        <a href="#" class="card-button">Başla</a>
-                    </div>
-                    <!-- Diğer egzersiz içerikleri buraya eklenecek -->
-                </div>
-            </div>
-
-            <!-- Yazılarım -->
-            <div class="section">
-                <h2>Yazılarım</h2>
-                <div class="list-container">
-                    <!-- Yazılar Listesi -->
-                    <div class="icerik-card">
-                        <div class="card-title">Yazı 1</div>
-                        <div class="card-description">
-                            Yazı 1 hakkında kısa açıklama buraya yazılacaktır.
-                        </div>
-                        <a href="#" class="card-button">Oku</a>
-                    </div>
-                    <!-- Diğer yazı içerikleri buraya eklenecek -->
-                </div>
+    <body>
+        <div class="navbar">
+            <div class="menu-toggle" onclick="toggleSidebar()">&#9776;</div>
+            <div class="title">SelfHelp</div>
+            <div class="nav-list">
             </div>
         </div>
 
-        <div id="icerik-ekle-content" class="card-container" style="display: flex;">
-            <div class="card1" onclick="showTherapyForm()">
-                <img src="images/therapy.png" alt="Terapi Ekle">
-                <div class="label">Terapi Ekle</div>
+        <div class="sidebar" id="sidebar">
+            <a href="#home-content" onclick="showContent('home-content')"><i
+                    class="bi bi-house"></i><span>Başlangıç</span></a>
+            <a href="#iceriklerim-content" onclick="showContent('iceriklerim-content')"><i
+                    class="bi bi-file-earmark"></i><span>İçeriklerim</span></a>
+            <a href="#icerik-ekle-content" onclick="showContent('icerik-ekle-content')"><i
+                    class="bi bi-plus-square"></i><span>İçerik Ekle</span></a>
+            <a href="#admin-content" onclick="showContent('admin-content')" style="display: none;"><i
+                    class="bi bi-shield-lock"></i><span>Yönet</span></a>
+        </div>
+
+        <div class="content" id="content">
+            <div id="admin-content" style="display: block;">
+                <h2>Onay Bekleyen İçerikler</h2>
+                <div class="content-header">
+                    <span>Tür</span>
+                    <span>Başlık</span>
+                    <span>Yazar</span>
+                </div>
+                <div class="content-list">
+                    <div class="content-item">
+                        <span class="content-type">Tür</span>
+                        <span class="content-title">Başlık</span>
+                        <span class="content-author">Yazar</span>
+                    </div>
+                    <!-- Daha fazla içerik burada listelenecek -->
+                </div>
             </div>
-            <div class="card1" onclick="showPodcastForm()">
-                <img src="images/podcast.png" alt="Podcast Ekle">
-                <div class="label">Podcast Ekle</div>
+            <div id="home-content" class="centered-content" style="display: flex;">
+                <img src="images/self.png" alt="Self Image">
             </div>
-            <div class="card1" onclick="showExerciseForm()">
-                <img src="images/exercise.png" alt="Egzersiz Ekle">
-                <div class="label">Egzersiz Ekle</div>
+
+            <!-- İçeriklerim Sayfası -->
+            <div id="iceriklerim-content" class="iceriklerim-content" style="display: flex;">
+                <!-- Terapilerim -->
+                <div class="section2">
+                    <h3>Terapilerim</h3>
+                    <div class="list-container">
+                        <!-- Terapiler Listesi -->
+                    </div>
+                </div>
+
+                <!-- Podcastlerim -->
+                <div class="section2">
+                    <h3>Podcastlerim</h3>
+                    <div class="list-container">
+                        <!-- Podcastler Listesi -->
+                    </div>
+                </div>
+
+                <!-- Egzersizlerim -->
+                <div class="section2">
+                    <h3>Egzersizlerim</h3>
+                    <div class="list-container">
+                        <!-- Egzersizler Listesi -->
+                    </div>
+                </div>
+
+                <!-- Yazılarım -->
+                <div class="section2">
+                    <h3>Yazılarım</h3>
+                    <div class="list-container">
+                        <!-- Yazılar Listesi -->
+                    </div>
+                </div>
             </div>
-            <div class="card1" onclick="showPostForm()">
-                <img src="images/post.png" alt="Yazı Ekle">
-                <div class="label">Yazı Ekle</div>
+
+            <div id="icerik-ekle-content" class="card-container" style="display: flex;">
+                <div class="card1" onclick="showTherapyForm()">
+                    <img src="images/therapy.png" alt="Terapi Ekle">
+                    <div class="label">Terapi Ekle</div>
+                </div>
+                <div class="card1" onclick="showPodcastForm()">
+                    <img src="images/podcast.png" alt="Podcast Ekle">
+                    <div class="label">Podcast Ekle</div>
+                </div>
+                <div class="card1" onclick="showExerciseForm()">
+                    <img src="images/exercise.png" alt="Egzersiz Ekle">
+                    <div class="label">Egzersiz Ekle</div>
+                </div>
+                <div class="card1" onclick="showPostForm()">
+                    <img src="images/post.png" alt="Yazı Ekle">
+                    <div class="label">Yazı Ekle</div>
+                </div>
             </div>
         </div>
-    </div>
 
-    <!-- Therapy Form Modal -->
-    <div class="modal fade" id="therapyModal" tabindex="-1" aria-labelledby="therapyModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="therapyModalLabel">Yeni Terapi Ekle</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form id="therapyForm">
-                        <div class="mb-3">
-                            <label for="title" class="form-label">Başlık</label>
-                            <input type="text" class="form-control" id="title" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="description" class="form-label">Açıklama</label>
-                            <textarea class="form-control" id="description" rows="3" required></textarea>
-                        </div>
-                        <div class="mb-3">
-                            <label for="imageUrl" class="form-label">Resim URL</label>
-                            <input type="text" class="form-control" id="imageUrl" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="cardImageUrl" class="form-label">Kart Resim URL</label>
-                            <input type="text" class="form-control" id="cardImageUrl" required>
-                        </div>
-
-                        <!-- Bölüm Ekleme -->
-                        <div id="sectionContainerWrapper">
-                            <div id="sectionContainer">
-                                <h5 style="text-align: center;">Bölümler</h5>
-                                <!-- Sections will be added here -->
+        <!-- Therapy Form Modal -->
+        <div class="modal fade" id="therapyModal" tabindex="-1" aria-labelledby="therapyModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="therapyModalLabel">Yeni Terapi Ekle</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="therapyForm">
+                            <div class="mb-3">
+                                <label for="title" class="form-label">Başlık</label>
+                                <input type="text" class="form-control" id="title" required>
                             </div>
-                            <button type="button" class="btn btn-secondary" onclick="addSection()">Bölüm
-                                Ekle</button>
-                        </div>
-
-                        <button type="submit" class="btn btn-primary">Ekle</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal fade" id="podcastModal" tabindex="-1" aria-labelledby="podcastModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="podcastModalLabel">Yeni Podcast Ekle</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form id="podcastForm">
-                        <div class="mb-3">
-                            <label for="podcastTitle" class="form-label">Başlık</label>
-                            <input type="text" class="form-control" id="podcastTitle" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="podcastDescription" class="form-label">Açıklama</label>
-                            <textarea class="form-control" id="podcastDescription" rows="3" required></textarea>
-                        </div>
-                        <div class="mb-3">
-                            <label for="podcastImageUrl" class="form-label">Resim URL</label>
-                            <input type="text" class="form-control" id="podcastImageUrl" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="podcastCardImageUrl" class="form-label">Kart Resim URL</label>
-                            <input type="text" class="form-control" id="podcastCardImageUrl" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="podcastSource" class="form-label">Kaynak</label>
-                            <input type="text" class="form-control" id="podcastSource" required>
-                        </div>
-
-                        <button type="submit" class="btn btn-primary">Ekle</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Exercise Form Modal -->
-    <div class="modal fade" id="exerciseModal" tabindex="-1" aria-labelledby="exerciseModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exerciseModalLabel">Yeni Egzersiz Ekle</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form id="exerciseForm">
-                        <div class="mb-3">
-                            <label for="exerciseName" class="form-label">Egzersiz Adı</label>
-                            <input type="text" class="form-control" id="exerciseName" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="exerciseDescription" class="form-label">Açıklama</label>
-                            <textarea class="form-control" id="exerciseDescription" rows="3" required></textarea>
-                        </div>
-                        <div class="mb-3">
-                            <label for="exerciseImageUrl" class="form-label">Resim URL</label>
-                            <input type="text" class="form-control" id="exerciseImageUrl" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="exerciseCardImageUrl" class="form-label">Kart Resim URL</label>
-                            <input type="text" class="form-control" id="exerciseCardImageUrl" required>
-                        </div>
-
-                        <div id="exerciseStepContainerWrapper">
-                            <div id="exerciseStepContainer">
-                                <h5 style="text-align: center; font-weight: bold;">Adımlar</h5>
+                            <div class="mb-3">
+                                <label for="description" class="form-label">Açıklama</label>
+                                <textarea class="form-control" id="description" rows="3" required></textarea>
                             </div>
-                            <button type="button" class="btn btn-secondary" onclick="addExerciseStep()">Adım
-                                Ekle</button>
-                        </div>
+                            <div class="mb-3">
+                                <label for="imageUrl" class="form-label">Resim URL</label>
+                                <input type="text" class="form-control" id="imageUrl" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="cardImageUrl" class="form-label">Kart Resim URL</label>
+                                <input type="text" class="form-control" id="cardImageUrl" required>
+                            </div>
 
-                        <button type="submit" class="btn btn-primary">Ekle</button>
-                    </form>
+                            <!-- Bölüm Ekleme -->
+                            <div id="sectionContainerWrapper">
+                                <div id="sectionContainer">
+                                    <h5 style="text-align: center;">Bölümler</h5>
+                                    <!-- Sections will be added here -->
+                                </div>
+                                <button type="button" class="btn btn-secondary" onclick="addSection()">Bölüm
+                                    Ekle</button>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary">Ekle</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <div class="modal fade" id="postModal" tabindex="-1" aria-labelledby="postModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="postModalLabel">Yeni Yazı Ekle</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form id="postForm">
-                        <div class="mb-3">
-                            <label for="postTitle" class="form-label">Başlık</label>
-                            <input type="text" class="form-control" id="postTitle" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="postDescription" class="form-label">Açıklama</label>
-                            <textarea class="form-control" id="postDescription" rows="3" required></textarea>
-                        </div>
-                        <div class="mb-3">
-                            <label for="postImageUrl" class="form-label">Resim URL</label>
-                            <input type="text" class="form-control" id="postImageUrl" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="postCardImageUrl" class="form-label">Kart Resim URL</label>
-                            <input type="text" class="form-control" id="postCardImageUrl" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="postSource" class="form-label">Kaynak</label>
-                            <input type="text" class="form-control" id="postSource" required>
-                        </div>
+        <div class="modal fade" id="podcastModal" tabindex="-1" aria-labelledby="podcastModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="podcastModalLabel">Yeni Podcast Ekle</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="podcastForm">
+                            <div class="mb-3">
+                                <label for="podcastTitle" class="form-label">Başlık</label>
+                                <input type="text" class="form-control" id="podcastTitle" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="podcastDescription" class="form-label">Açıklama</label>
+                                <textarea class="form-control" id="podcastDescription" rows="3" required></textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label for="podcastImageUrl" class="form-label">Resim URL</label>
+                                <input type="text" class="form-control" id="podcastImageUrl" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="podcastCardImageUrl" class="form-label">Kart Resim URL</label>
+                                <input type="text" class="form-control" id="podcastCardImageUrl" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="podcastSource" class="form-label">Kaynak</label>
+                                <input type="text" class="form-control" id="podcastSource" required>
+                            </div>
 
-                        <button type="submit" class="btn btn-primary">Ekle</button>
-                    </form>
+                            <button type="submit" class="btn btn-primary">Ekle</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <!-- Bootstrap 5 JS and dependencies -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Exercise Form Modal -->
+        <div class="modal fade" id="exerciseModal" tabindex="-1" aria-labelledby="exerciseModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exerciseModalLabel">Yeni Egzersiz Ekle</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="exerciseForm">
+                            <div class="mb-3">
+                                <label for="exerciseName" class="form-label">Egzersiz Adı</label>
+                                <input type="text" class="form-control" id="exerciseName" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="exerciseDescription" class="form-label">Açıklama</label>
+                                <textarea class="form-control" id="exerciseDescription" rows="3" required></textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label for="exerciseImageUrl" class="form-label">Resim URL</label>
+                                <input type="text" class="form-control" id="exerciseImageUrl" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="exerciseCardImageUrl" class="form-label">Kart Resim URL</label>
+                                <input type="text" class="form-control" id="exerciseCardImageUrl" required>
+                            </div>
 
-    <script>
-        var originalStyles = {};
+                            <div id="exerciseStepContainerWrapper">
+                                <div id="exerciseStepContainer">
+                                    <h5 style="text-align: center; font-weight: bold;">Adımlar</h5>
+                                </div>
+                                <button type="button" class="btn btn-secondary" onclick="addExerciseStep()">Adım
+                                    Ekle</button>
+                            </div>
 
-        function saveOriginalStyles() {
-            var contents = document.querySelectorAll('.content > div');
-            contents.forEach(function (content) {
-                originalStyles[content.id] = getComputedStyle(content).display || 'none';
-            });
-            showContent('home-content');
-        }
+                            <button type="submit" class="btn btn-primary">Ekle</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-        function getCookie(name) {
-            const value = `; ${document.cookie}`;
-            const parts = value.split(`; ${name}=`);
-            if (parts.length === 2) return parts.pop().split(';').shift();
-        }
+        <div class="modal fade" id="postModal" tabindex="-1" aria-labelledby="postModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="postModalLabel">Yeni Yazı Ekle</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="postForm">
+                            <div class="mb-3">
+                                <label for="postTitle" class="form-label">Başlık</label>
+                                <input type="text" class="form-control" id="postTitle" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="postDescription" class="form-label">Açıklama</label>
+                                <textarea class="form-control" id="postDescription" rows="3" required></textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label for="postImageUrl" class="form-label">Resim URL</label>
+                                <input type="text" class="form-control" id="postImageUrl" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="postCardImageUrl" class="form-label">Kart Resim URL</label>
+                                <input type="text" class="form-control" id="postCardImageUrl" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="postSource" class="form-label">Kaynak</label>
+                                <input type="text" class="form-control" id="postSource" required>
+                            </div>
 
-        async function fetchTherapies() {
-            try {
-                const token = getCookie('token');
+                            <button type="submit" class="btn btn-primary">Ekle</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-                const response = await fetch('/content/my-therapies', {
+        <!-- Onay Modalı -->
+        <div id="confirmation-modal" class="confirmation-modal">
+            <div class="confirmation-content">
+                <span class="close-btn">&times;</span>
+                <p id="modal-message"></p>
+                <div class="modal-actions">
+                    <button id="confirm-btn" class="btn confirm-btn">Evet</button>
+                    <button id="cancel-btn" class="btn cancel-btn">Hayır</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bootstrap 5 JS and dependencies -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+        <script>
+
+            document.addEventListener('DOMContentLoaded', function () {
+                fetch('/auth/role', {
                     method: 'GET',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${token}`
+                    credentials: 'include'
+                }).then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
                     }
+                    return response.json();
+                }).then(data => {
+                    const userRole = data.role;
+                    console.log('Kullanıcı rolü:', userRole);
+
+                    if (userRole === 'admin') {
+                        const adminLink = document.querySelector('a[href="#admin-content"]');
+
+                        if (adminLink) {
+                            adminLink.style.display = 'block';
+                        } else {
+                            console.error('HTML öğeleri bulunamadı');
+                        }
+                    }
+                }).catch(error => {
+                    console.error('Hata:', error);
                 });
-
-                console.log(response);
-
-                if (response.ok) {
-                    const data = await response.json();
-                    return data.therapies;
-                } else {
-                    console.error('Error fetching therapies:', response.statusText);
-                }
-            } catch (error) {
-                console.error('Error fetching therapies:', error);
-            }
-        }
-
-        async function displayTherapies() {
-            const therapies = await fetchTherapies();
-            const therapyListContainer = document.querySelector('.section:nth-of-type(1) .list-container');
-
-            therapyListContainer.innerHTML = '';
-
-            therapies.forEach(therapy => {
-                const card = document.createElement('div');
-                card.className = 'icerik-card';
-
-                const cardTitle = document.createElement('div');
-                cardTitle.className = 'card-title';
-                cardTitle.textContent = therapy.title;
-
-                const cardActions = document.createElement('div');
-                cardActions.className = 'card-actions';
-
-                const editButton = document.createElement('button');
-                editButton.className = 'btn btn-primary';
-
-                const deleteButton = document.createElement('button');
-                deleteButton.className = 'btn btn-secondary';
-
-                cardActions.appendChild(editButton);
-                cardActions.appendChild(deleteButton);
-
-                card.appendChild(cardTitle);
-                card.appendChild(cardActions);
-
-                therapyListContainer.appendChild(card);
             });
-        }
 
-        async function fetchPodcasts() {
-            try {
-                const token = getCookie('token');
+            var originalStyles = {};
 
-                const response = await fetch('/content/my-podcasts', {
-                    method: 'GET',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${token}`
-                    }
+            function saveOriginalStyles() {
+                var contents = document.querySelectorAll('.content > div');
+                contents.forEach(function (content) {
+                    originalStyles[content.id] = getComputedStyle(content).display || 'none';
                 });
-
-                console.log(response);
-
-                if (response.ok) {
-                    const data = await response.json();
-                    return data.podcasts;
-                } else {
-                    console.error('Error fetching podcasts:', response.statusText);
-                }
-            } catch (error) {
-                console.error('Error fetching podcasts:', error);
+                showContent('home-content');
             }
-        }
 
-        async function displayPodcasts() {
-            const podcasts = await fetchPodcasts();
-            const podcastListContainer = document.querySelector('.section:nth-of-type(2) .list-container');
+            function getCookie(name) {
+                const value = `; ${document.cookie}`;
+                const parts = value.split(`; ${name}=`);
+                if (parts.length === 2) return parts.pop().split(';').shift();
+            }
 
-            podcastListContainer.innerHTML = '';
+            async function fetchTherapies() {
+                try {
+                    const token = getCookie('token');
 
-            podcasts.forEach(podcast => {
-                const card = document.createElement('div');
-                card.className = 'icerik-card';
+                    const response = await fetch('/content/my-therapies', {
+                        method: 'GET',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${token}`
+                        }
+                    });
 
-                const cardTitle = document.createElement('div');
-                cardTitle.className = 'card-title';
-                cardTitle.textContent = podcast.title;
+                    console.log(response);
 
-                const cardActions = document.createElement('div');
-                cardActions.className = 'card-actions';
-
-                const editButton = document.createElement('button');
-                editButton.className = 'btn btn-primary';
-
-                const deleteButton = document.createElement('button');
-                deleteButton.className = 'btn btn-secondary';
-
-                cardActions.appendChild(editButton);
-                cardActions.appendChild(deleteButton);
-
-                card.appendChild(cardTitle);
-                card.appendChild(cardActions);
-
-                podcastListContainer.appendChild(card);
-            });
-        }
-
-
-        async function fetchExercises() {
-            try {
-                const token = getCookie('token');
-
-                const response = await fetch('/content/my-exercises', {
-                    method: 'GET',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${token}`
+                    if (response.ok) {
+                        const data = await response.json();
+                        return data.therapies;
+                    } else {
+                        console.error('Error fetching therapies:', response.statusText);
                     }
-                });
-
-                console.log(response);
-
-                if (response.ok) {
-                    const data = await response.json();
-                    return data.exercises;
-                } else {
-                    console.error('Error fetching exercises:', response.statusText);
+                } catch (error) {
+                    console.error('Error fetching therapies:', error);
                 }
-            } catch (error) {
-                console.error('Error fetching exercises:', error);
             }
-        }
 
-        async function displayExercises() {
-            const exercises = await fetchExercises();
-            const exerciseListContainer = document.querySelector('.section:nth-of-type(3) .list-container');
+            async function displayTherapies() {
+                const therapies = await fetchTherapies();
+                const therapyListContainer = document.querySelector('.section2:nth-of-type(1) .list-container');
 
-            exerciseListContainer.innerHTML = '';
+                therapyListContainer.innerHTML = '';
 
-            exercises.forEach(exercise => {
-                const card = document.createElement('div');
-                card.className = 'icerik-card';
+                therapies.forEach(therapy => {
+                    const card = document.createElement('div');
+                    card.className = 'icerik-card';
 
-                const cardTitle = document.createElement('div');
-                cardTitle.className = 'card-title';
-                cardTitle.textContent = exercise.name;
+                    const cardTitle = document.createElement('div');
+                    cardTitle.className = 'card-title';
+                    cardTitle.textContent = therapy.title;
 
-                const cardActions = document.createElement('div');
-                cardActions.className = 'card-actions';
+                    const cardActions = document.createElement('div');
+                    cardActions.className = 'card-actions';
 
-                const editButton = document.createElement('button');
-                editButton.className = 'btn btn-primary';
+                    const statusElement = document.createElement('div');
+                    let statusText = '';
+                    let statusClass = '';
 
-                const deleteButton = document.createElement('button');
-                deleteButton.className = 'btn btn-secondary';
-
-                cardActions.appendChild(editButton);
-                cardActions.appendChild(deleteButton);
-
-                card.appendChild(cardTitle);
-                card.appendChild(cardActions);
-
-                exerciseListContainer.appendChild(card);
-            });
-        }
-
-
-        async function fetchPosts() {
-            try {
-                const token = getCookie('token');
-
-                const response = await fetch('/content/my-posts', {
-                    method: 'GET',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${token}`
+                    switch (therapy.status) {
+                        case "approved":
+                            statusText = 'Onaylandı';
+                            statusClass = 'status-approved';
+                            break;
+                        case "pending":
+                            statusText = 'Onay Bekleniyor';
+                            statusClass = 'status-pending';
+                            break;
+                        case "rejected":
+                            statusText = 'Onaylanmadı';
+                            statusClass = 'status-rejected';
+                            break;
                     }
+
+                    statusElement.className = statusClass;
+                    statusElement.textContent = statusText;
+
+                    cardActions.appendChild(statusElement);
+
+                    const editButton = document.createElement('button');
+                    editButton.className = 'btn btn-primary';
+
+                    const deleteButton = document.createElement('button');
+                    deleteButton.className = 'btn btn-secondary';
+
+                    cardActions.appendChild(editButton);
+                    cardActions.appendChild(deleteButton);
+
+                    card.appendChild(cardTitle);
+                    card.appendChild(cardActions);
+
+                    therapyListContainer.appendChild(card);
                 });
-
-                console.log(response);
-
-                if (response.ok) {
-                    const data = await response.json();
-                    return data.posts;
-                } else {
-                    console.error('Error fetching posts:', response.statusText);
-                }
-            } catch (error) {
-                console.error('Error fetching posts:', error);
             }
-        }
+
+
+            async function fetchPodcasts() {
+                try {
+                    const token = getCookie('token');
+
+                    const response = await fetch('/content/my-podcasts', {
+                        method: 'GET',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${token}`
+                        }
+                    });
+
+                    console.log(response);
+
+                    if (response.ok) {
+                        const data = await response.json();
+                        return data.podcasts;
+                    } else {
+                        console.error('Error fetching podcasts:', response.statusText);
+                    }
+                } catch (error) {
+                    console.error('Error fetching podcasts:', error);
+                }
+            }
+
+            async function displayPodcasts() {
+                const podcasts = await fetchPodcasts();
+                const podcastListContainer = document.querySelector('.section2:nth-of-type(2) .list-container');
+
+                podcastListContainer.innerHTML = '';
+
+                podcasts.forEach(podcast => {
+                    const card = document.createElement('div');
+                    card.className = 'icerik-card';
+
+                    const cardTitle = document.createElement('div');
+                    cardTitle.className = 'card-title';
+                    cardTitle.textContent = podcast.title;
+
+                    const cardActions = document.createElement('div');
+                    cardActions.className = 'card-actions';
+
+                    const statusElement = document.createElement('div');
+                    let statusText = '';
+                    let statusClass = '';
+
+                    switch (podcast.status) {
+                        case "approved":
+                            statusText = 'Onaylandı';
+                            statusClass = 'status-approved';
+                            break;
+                        case "pending":
+                            statusText = 'Onay Bekleniyor';
+                            statusClass = 'status-pending';
+                            break;
+                        case "rejected":
+                            statusText = 'Onaylanmadı';
+                            statusClass = 'status-rejected';
+                            break;
+                    }
+
+                    statusElement.className = statusClass;
+                    statusElement.textContent = statusText;
+
+                    cardActions.appendChild(statusElement);
+
+                    const editButton = document.createElement('button');
+                    editButton.className = 'btn btn-primary';
+
+                    const deleteButton = document.createElement('button');
+                    deleteButton.className = 'btn btn-secondary';
+
+                    cardActions.appendChild(editButton);
+                    cardActions.appendChild(deleteButton);
+
+                    card.appendChild(cardTitle);
+                    card.appendChild(cardActions);
+
+                    podcastListContainer.appendChild(card);
+                });
+            }
+
+
+            async function fetchExercises() {
+                try {
+                    const token = getCookie('token');
+
+                    const response = await fetch('/content/my-exercises', {
+                        method: 'GET',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${token}`
+                        }
+                    });
+
+                    console.log(response);
+
+                    if (response.ok) {
+                        const data = await response.json();
+                        return data.exercises;
+                    } else {
+                        console.error('Error fetching exercises:', response.statusText);
+                    }
+                } catch (error) {
+                    console.error('Error fetching exercises:', error);
+                }
+            }
+
+            async function displayExercises() {
+                const exercises = await fetchExercises();
+                const exerciseListContainer = document.querySelector('.section2:nth-of-type(3) .list-container');
+
+                exerciseListContainer.innerHTML = '';
+
+                exercises.forEach(exercise => {
+                    const card = document.createElement('div');
+                    card.className = 'icerik-card';
+
+                    const cardTitle = document.createElement('div');
+                    cardTitle.className = 'card-title';
+                    cardTitle.textContent = exercise.name;
+
+                    const cardActions = document.createElement('div');
+                    cardActions.className = 'card-actions';
+
+                    const statusElement = document.createElement('div');
+                    let statusText = '';
+                    let statusClass = '';
+
+                    switch (exercise.status) {
+                        case "approved":
+                            statusText = 'Onaylandı';
+                            statusClass = 'status-approved';
+                            break;
+                        case "pending":
+                            statusText = 'Onay Bekleniyor';
+                            statusClass = 'status-pending';
+                            break;
+                        case "rejected":
+                            statusText = 'Onaylanmadı';
+                            statusClass = 'status-rejected';
+                            break;
+                    }
+
+                    statusElement.className = statusClass;
+                    statusElement.textContent = statusText;
+
+                    cardActions.appendChild(statusElement);
+
+                    const editButton = document.createElement('button');
+                    editButton.className = 'btn btn-primary';
+
+                    const deleteButton = document.createElement('button');
+                    deleteButton.className = 'btn btn-secondary';
+
+                    cardActions.appendChild(editButton);
+                    cardActions.appendChild(deleteButton);
+
+                    card.appendChild(cardTitle);
+                    card.appendChild(cardActions);
+
+                    exerciseListContainer.appendChild(card);
+                });
+            }
+
+
+            async function fetchPosts() {
+                try {
+                    const token = getCookie('token');
+
+                    const response = await fetch('/content/my-posts', {
+                        method: 'GET',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${token}`
+                        }
+                    });
+
+                    console.log(response);
+
+                    if (response.ok) {
+                        const data = await response.json();
+                        return data.posts;
+                    } else {
+                        console.error('Error fetching posts:', response.statusText);
+                    }
+                } catch (error) {
+                    console.error('Error fetching posts:', error);
+                }
+            }
 
         async function displayPosts() {
             const posts = await fetchPosts();
-            const postListContainer = document.querySelector('.section:nth-of-type(4) .list-container');
+            const postListContainer = document.querySelector('.section2:nth-of-type(4) .list-container');
 
             postListContainer.innerHTML = '';
 
@@ -533,6 +631,30 @@
 
                 const cardActions = document.createElement('div');
                 cardActions.className = 'card-actions';
+
+                const statusElement = document.createElement('div');
+                let statusText = '';
+                let statusClass = '';
+
+                switch (post.status) {
+                    case "approved":
+                        statusText = 'Onaylandı';
+                        statusClass = 'status-approved';
+                        break;
+                    case "pending":
+                        statusText = 'Onay Bekleniyor';
+                        statusClass = 'status-pending';
+                        break;
+                    case "rejected":
+                        statusText = 'Onaylanmadı';
+                        statusClass = 'status-rejected';
+                        break;
+                }
+
+                statusElement.className = statusClass;
+                statusElement.textContent = statusText;
+
+                cardActions.appendChild(statusElement);
 
                 const editButton = document.createElement('button');
                 editButton.className = 'btn btn-primary';
@@ -561,6 +683,8 @@
                 displayExercises();
                 displayPodcasts();
                 displayPosts();
+            } else if (contentId === 'admin-content') {
+                displayUnapprovedContents();
             }
 
             var selectedContent = document.getElementById(contentId);
@@ -582,6 +706,155 @@
                 toggleSidebar();
             }
         }
+
+        async function displayUnapprovedContents() {
+            try {
+                const response = await fetch('/content/unapproved-contents');
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+
+                const contents = await response.json();
+                const contentList = document.querySelector('.content-list');
+
+                contentList.innerHTML = '';
+
+                contents.forEach(content => {
+                    const contentItem = document.createElement('div');
+                    contentItem.classList.add('content-item');
+
+                    contentItem.innerHTML = `
+                <span class="content-type">${content.type}</span>
+                <span class="content-title">${content.title}</span>
+                <span class="content-author">${content.creator}</span>
+                <div class="actions">
+                    <button class="approve-btn" data-id="${content._id}" data-type="${content.type.toLowerCase()}"></button>
+                    <button class="reject-btn" data-id="${content._id}" data-type="${content.type.toLowerCase()}"></button>
+                </div>
+            `;
+
+                    contentList.appendChild(contentItem);
+                });
+
+                // Butonlar eklendikten sonra olay dinleyicilerini ekleyin
+                attachEventListeners();
+
+            } catch (error) {
+                console.error('Error fetching unapproved contents:', error);
+                // Hata mesajını kullanıcıya gösterme veya başka bir hata yönetim işlemi yapma
+                alert('Onay bekleyen içerikleri yüklerken bir hata oluştu. Lütfen daha sonra tekrar deneyin.');
+            }
+        }
+
+        let confirmCallback = null; // Onaylanma işlemi için geri çağırma işlevi
+
+        // Modalı gösterme
+        function showConfirmationModal(message, onConfirm) {
+            const modal = document.getElementById('confirmation-modal');
+            const modalMessage = document.getElementById('modal-message');
+
+            // Mesajın HTML içeriğini ayarla
+            modalMessage.innerHTML = message;
+
+            const confirmBtn = document.getElementById('confirm-btn');
+            const cancelBtn = document.getElementById('cancel-btn');
+            const closeBtn = document.querySelector('.close-btn');
+
+            // Modalı göster
+            modal.style.display = 'block';
+
+            // Onay ve iptal butonlarına işlev ekleyin
+            confirmBtn.onclick = () => {
+                if (onConfirm) {
+                    onConfirm();  // Onay işlevini çağır
+                }
+                modal.style.display = 'none';
+            };
+
+            cancelBtn.onclick = () => {
+                modal.style.display = 'none';
+            };
+
+            closeBtn.onclick = () => {
+                modal.style.display = 'none';
+            };
+
+            window.onclick = (event) => {
+                if (event.target === modal) {
+                    modal.style.display = 'none';
+                }
+            };
+        }
+
+
+
+        async function attachEventListeners() {
+            document.querySelectorAll('.approve-btn').forEach(button => {
+                button.addEventListener('click', function () {
+                    const contentId = this.dataset.id;
+                    const contentType = this.dataset.type;
+
+                    showConfirmationModal(
+                        'İçeriği <strong>onaylamak</strong> istediğinize emin misiniz?',
+                        async function () {
+                            try {
+                                const response = await fetch(`/content/${contentType}/${contentId}`, {
+                                    method: 'PUT',
+                                    headers: {
+                                        'Content-Type': 'application/json'
+                                    },
+                                    body: JSON.stringify({ status: 'approved' })
+                                });
+                                const result = await response.json();
+                                if (response.ok) {
+                                    alert(result.message);
+                                    document.querySelector(`[data-id="${contentId}"]`).closest('.content-item').remove();
+                                } else {
+                                    alert('Bir hata oluştu: ' + result.message);
+                                }
+                            } catch (error) {
+                                alert('Bir sunucu hatası oluştu.');
+                            }
+                        }
+                    );
+                });
+            });
+
+            document.querySelectorAll('.reject-btn').forEach(button => {
+                button.addEventListener('click', function () {
+                    const contentId = this.dataset.id;
+                    const contentType = this.dataset.type;
+
+                    showConfirmationModal(
+                        'İçeriği <strong>reddetmek</strong> istediğinize emin misiniz?',
+                        async function () {
+                            try {
+                                const response = await fetch(`/content/${contentType}/${contentId}`, {
+                                    method: 'PUT',
+                                    headers: {
+                                        'Content-Type': 'application/json'
+                                    },
+                                    body: JSON.stringify({ status: 'rejected' })
+                                });
+                                const result = await response.json();
+                                if (response.ok) {
+                                    alert(result.message);
+                                    document.querySelector(`[data-id="${contentId}"]`).closest('.content-item').remove();
+                                } else {
+                                    alert('Bir hata oluştu: ' + result.message);
+                                }
+                            } catch (error) {
+                                alert('Bir sunucu hatası oluştu.');
+                            }
+                        }
+                    );
+                });
+            });
+        }
+
+
+
 
         function toggleSidebar() {
             var sidebar = document.querySelector('.sidebar');
@@ -656,6 +929,7 @@
 
             stepsContainer.appendChild(stepDiv);
         }
+
 
         function deleteSection(sectionIndex) {
             const sectionDiv = document.querySelector(`.section[data-index="${sectionIndex}"]`);

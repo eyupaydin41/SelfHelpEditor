@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
+const { ROLES } = require('../config/Enum');
 const bcrypt = require('bcrypt');
 
 const userSchema = new Schema({
@@ -11,6 +12,11 @@ const userSchema = new Schema({
     password: {
         type: String,
         required: true,
+    },
+    role: {
+        type: String,
+        enum: Object.values(ROLES),
+        default: ROLES.EDITOR,
     },
     createdAt: {
         type: Date,

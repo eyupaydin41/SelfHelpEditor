@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
+const { STATUS } = require('../config/Enum');
 
 const exerciseSchema = new Schema({
     name: {
@@ -17,6 +18,11 @@ const exerciseSchema = new Schema({
     imageUrl: {
         type: String,
         required: true,
+    },
+    status: {
+        type: String,
+        enum: Object.values(STATUS),
+        default: STATUS.PENDING
     },
     creator: {
         type: Schema.Types.ObjectId,
